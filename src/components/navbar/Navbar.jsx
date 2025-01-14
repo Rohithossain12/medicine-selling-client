@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
+  const { user, logOut } = useAuth();
 
-  const user = {
-    isLoggedIn: true,
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEL3-iNvrv_DpFuJ_4qX1fcz5CVXeOhi_udg&s",
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      toast.success("You have successfully logged out.");
+    } catch (error) {
+      toast.error("Failed to log out. Please try again.");
+    }
   };
-  console.log(language);
 
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
@@ -57,10 +62,10 @@ const Navbar = () => {
           </div>
 
           {/* Conditional Rendering for User */}
-          {user.isLoggedIn ? (
+          {user?.email ? (
             <div className="relative">
               <img
-                src={user.profilePicture}
+                src={user?.photoURL}
                 alt="Profile"
                 className="h-8 w-8 rounded-full cursor-pointer"
                 onClick={() => setProfileMenuOpen(!profileMenuOpen)}
@@ -73,7 +78,10 @@ const Navbar = () => {
                   <Link className="block px-4 py-2 hover:bg-gray-100">
                     Dashboard
                   </Link>
-                  <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
                     Logout
                   </button>
                 </div>
@@ -126,13 +134,16 @@ const Navbar = () => {
               <option value="ES">ES</option>
             </select>
           </div>
-          {user.isLoggedIn ? (
+          {user?.email ? (
             <>
               <Link className="block hover:text-gray-400">Update Profile</Link>
               <Link href="/dashboard" className="block hover:text-gray-400">
                 Dashboard
               </Link>
-              <button className="block text-left w-full hover:text-gray-400">
+              <button
+                onClick={handleLogout}
+                className="block text-left w-full hover:text-gray-400"
+              >
                 Logout
               </button>
             </>
