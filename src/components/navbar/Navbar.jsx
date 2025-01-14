@@ -33,7 +33,9 @@ const Navbar = () => {
           <Link to="/" className="hover:text-gray-400">
             Home
           </Link>
-          <Link className="hover:text-gray-400">Shop</Link>
+          <Link to="/shop" className="hover:text-gray-400">
+            Shop
+          </Link>
           <div className="relative cursor-pointer">
             <FaShoppingCart className="text-xl hover:text-gray-400" />
             <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -104,7 +106,9 @@ const Navbar = () => {
           <Link to="/" className="block hover:text-gray-400">
             Home
           </Link>
-          <Link className="block hover:text-gray-400">Shop</Link>
+          <Link to="/shop" className="block hover:text-gray-400">
+            Shop
+          </Link>
           <div className="flex items-center space-x-2">
             <div className="relative cursor-pointer">
               <FaShoppingCart className="text-xl hover:text-gray-400" />
