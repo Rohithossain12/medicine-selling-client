@@ -5,6 +5,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
 import Shop from "../components/shop/Shop";
 import ErrorPage from "../pages/errorPage/ErrorPage";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +27,9 @@ export const router = createBrowserRouter([
         },
         {
           path:'/shop',
-          element:<Shop></Shop>
+          element:<PrivateRoute>
+            <Shop></Shop>
+          </PrivateRoute>
         }
       ]
     },
