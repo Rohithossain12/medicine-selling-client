@@ -85,7 +85,7 @@ const LoadingSpinner = () => {
             strokeWidth="24"
           ></line>
         </svg>
-        <span className="text-4xl font-medium text-gray-500">Loading...</span>
+        <span className="text-4xl font-medium ">Loading...</span>
       </div>
     </div>
   );

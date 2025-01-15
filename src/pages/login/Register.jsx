@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
 import toast from "react-hot-toast";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Lottie from "react-lottie-player";
 import animationData from "../../assets/Animation - 1736873044775.json";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { createUser, userProfileUpdate, loading, setLoading } =
     useContext(AuthContext);
@@ -22,11 +24,21 @@ const Register = () => {
     setLoading(true);
     try {
       // Register the user
-      const result = await createUser(data.email, data.password);
+      await createUser(data.email, data.password);
 
       // Update the user profile
       await userProfileUpdate(data.name, data.photoURL);
 
+      // Prepare user data
+      const userData = {
+        name: data.name,
+        photo: data.photoURL,
+        role: "user", // Default role
+        email: data.email,
+      };
+
+      // Send user data to the backend
+      await axiosPublic.post("/users", userData);
       toast.success("Registration successful!");
       reset(); // Reset the form
       navigate("/");

@@ -3,14 +3,23 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
+  const axiosPublic = useAxiosPublic();
   const { signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithGoogle();
       const user = result.user;
+      const userData = {
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        role: "user", // Default role
+      };
+      await axiosPublic.post("/users", userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate("/");
     } catch (error) {

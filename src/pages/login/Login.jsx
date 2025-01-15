@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import animationData from "../../assets/Animation - 1736878783061.json";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const result = await login(data.email, data.password);
+      await login(data.email, data.password);
       toast.success("Login successful!");
       navigate("/");
     } catch (error) {
