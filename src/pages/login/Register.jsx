@@ -24,7 +24,8 @@ const Register = () => {
     setLoading(true);
     try {
       // Register the user
-      await createUser(data.email, data.password);
+      const result = await createUser(data.email, data.password);
+      console.log(result)
 
       // Update the user profile
       await userProfileUpdate(data.name, data.photoURL);
@@ -36,6 +37,7 @@ const Register = () => {
         role: "user", // Default role
         email: data.email,
       };
+      
 
       // Send user data to the backend
       await axiosPublic.post("/users", userData);

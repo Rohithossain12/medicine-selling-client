@@ -7,23 +7,29 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
   const axiosPublic = useAxiosPublic();
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle, loading, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleGoogleLogin = async () => {
+    setLoading(true);
     try {
       const result = await signInWithGoogle();
       const user = result.user;
+
+      // Prepare user data
       const userData = {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
+        name: user?.name,
+        photo: user?.photoURL,
         role: "user", // Default role
+        email: user?.email,
       };
+      // Send user data to the backend
       await axiosPublic.post("/users", userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate("/");
     } catch (error) {
       toast.error("Google login failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
   return (
