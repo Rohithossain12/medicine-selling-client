@@ -75,7 +75,7 @@ const Navbar = () => {
                   <Link className="block px-4 py-2 hover:bg-gray-100">
                     Update Profile
                   </Link>
-                  <Link className="block px-4 py-2 hover:bg-gray-100">
+                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100">
                     Dashboard
                   </Link>
                   <button
@@ -137,7 +137,7 @@ const Navbar = () => {
           {user?.email ? (
             <>
               <Link className="block hover:text-gray-400">Update Profile</Link>
-              <Link href="/dashboard" className="block hover:text-gray-400">
+              <Link to="/dashboard" className="block hover:text-gray-400">
                 Dashboard
               </Link>
               <button
