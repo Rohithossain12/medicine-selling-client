@@ -80,10 +80,11 @@ const Dashboard = () => {
               User Home
             </NavLink>
           </li>
+          <div className="divider"></div>
           <li>
-            <NavLink to="/dashboard/userPaymentHistory">
+            <NavLink to="/">
               <FaHome></FaHome>
-              Payment History
+              Home
             </NavLink>
           </li>
         </ul>

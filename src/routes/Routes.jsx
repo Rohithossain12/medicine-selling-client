@@ -13,6 +13,11 @@ import ManageCategory from "../pages/dashboard/manageCategory/ManageCategory";
 import ManagePayment from "../pages/dashboard/managePayment/ManagePayment";
 import ManageAdvertise from "../pages/dashboard/manageAdvertise/ManageAdvertise";
 import SalesReport from "../pages/dashboard/salesReport/SalesReport";
+import SellerHome from "../layouts/sellerHome/SellerHome";
+import ManageMedicines from "../pages/dashboard/sellerDashboard/manageMedicines/ManageMedicines";
+import PaymentHistory from "../pages/dashboard/salesReport/paymentHistory/PaymentHistory";
+import Advertisement from "../pages/dashboard/sellerAdvertisement/Advertisement";
+import UserHome from "../layouts/userHome/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +76,32 @@ export const router = createBrowserRouter([
       {
         path: "salesReport",
         element: <SalesReport></SalesReport>,
+      },
+
+      // seller only routes
+      {
+        path: "sellerHome",
+        element: <SellerHome></SellerHome>,
+      },
+      {
+        path: "manageMedicines",
+        element: <ManageMedicines></ManageMedicines>,
+      },
+      {
+        path: "manageMedicines",
+        element: <ManageMedicines></ManageMedicines>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "askForAdvertisement",
+        element: <Advertisement></Advertisement>,
+      },
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>,
       },
     ],
   },
