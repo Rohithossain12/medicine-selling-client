@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -12,6 +12,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
   const [isSeller] = useSeller();
+  const [currentTime, setCurrentTime] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -21,6 +22,17 @@ const Navbar = () => {
       toast.error("Failed to log out. Please try again.");
     }
   };
+
+  // Update time every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      setCurrentTime(timeString);
+    }, 1000);
+
+    return () => clearInterval(interval); 
+  }, []);
 
   // Determine Dashboard default route
   const dashboardRoute = isAdmin
@@ -43,6 +55,10 @@ const Navbar = () => {
             <span className="text-xl font-bold">PharmaWorld</span>
           </div>
         </Link>
+        {/* Digital Clock */}
+        <div className="hidden md:flex items-center text-gray-300 text-lg font-semibold">
+          {currentTime}
+        </div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-6">
@@ -125,6 +141,10 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {profileMenuOpen && (
         <div className="md:hidden mt-3 space-y-3 bg-gray-700 p-4 rounded">
+          {/* Digital Clock */}
+          <div className="text-center text-gray-300 text-lg font-semibold">
+            {currentTime}
+          </div>
           <Link to="/" className="block hover:text-gray-400">
             Home
           </Link>
@@ -151,7 +171,7 @@ const Navbar = () => {
           {user?.email ? (
             <>
               <Link className="block hover:text-gray-400">Update Profile</Link>
-              <Link to="/dashboard" className="block hover:text-gray-400">
+              <Link to={dashboardRoute} className="block hover:text-gray-400">
                 Dashboard
               </Link>
               <button
