@@ -31,7 +31,7 @@ const Navbar = () => {
       setCurrentTime(timeString);
     }, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   // Determine Dashboard default route
