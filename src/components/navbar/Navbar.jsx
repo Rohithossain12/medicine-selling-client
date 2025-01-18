@@ -3,11 +3,15 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useAdmin from "../../hooks/useAdmin";
+import useSeller from "../../hooks/useSeller";
 
 const Navbar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
+  const [isSeller] = useSeller();
 
   const handleLogout = async () => {
     try {
@@ -17,6 +21,13 @@ const Navbar = () => {
       toast.error("Failed to log out. Please try again.");
     }
   };
+
+  // Determine Dashboard default route
+  const dashboardRoute = isAdmin
+    ? "/dashboard/adminHome"
+    : isSeller
+    ? "/dashboard/sellerHome"
+    : "/dashboard/userHome";
 
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
@@ -75,7 +86,10 @@ const Navbar = () => {
                   <Link className="block px-4 py-2 hover:bg-gray-100">
                     Update Profile
                   </Link>
-                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100">
+                  <Link
+                    to={dashboardRoute}
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
                     Dashboard
                   </Link>
                   <button
