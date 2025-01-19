@@ -17,7 +17,7 @@ const SocialLogin = () => {
 
       // Prepare user data
       const userData = {
-        name: user?.name,
+        name: user?.displayName,
         photo: user?.photoURL,
         role: "user", // Default role
         email: user?.email,
