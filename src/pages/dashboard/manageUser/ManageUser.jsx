@@ -10,7 +10,6 @@ const ManageUser = () => {
     data: users = [],
     isLoading,
     refetch,
-    isError,
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
