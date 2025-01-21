@@ -18,6 +18,7 @@ import ManageMedicines from "../pages/dashboard/sellerDashboard/manageMedicines/
 import PaymentHistory from "../pages/dashboard/salesReport/paymentHistory/PaymentHistory";
 import Advertisement from "../pages/dashboard/sellerAdvertisement/Advertisement";
 import UserHome from "../layouts/userHome/UserHome";
+import CategoryDetails from "../pages/home/category/CategoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/categoryDetails/:categoryName",
+        element: <CategoryDetails></CategoryDetails>,
       },
       {
         path: "/shop",

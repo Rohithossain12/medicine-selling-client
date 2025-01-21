@@ -14,14 +14,12 @@ const ManageMedicines = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentMedicine, setCurrentMedicine] = useState(null);
-  console.log(currentMedicine);
 
   // Fetch medicines using TanStack Query
   const {
     data: medicines = [],
     isLoading: medicinesLoading,
     refetch,
-    isError: medicinesError,
   } = useQuery({
     queryKey: ["medicines"],
     queryFn: async () => {
@@ -29,25 +27,15 @@ const ManageMedicines = () => {
       return response?.data;
     },
   });
-  if (medicinesError) {
-    toast.error("Failed to fetch medicines. Please try again later.");
-  }
 
   // Fetch categories using TanStack Query
-  const {
-    data: categories = [],
-    isLoading: isCategoryLoading,
-    isError: isCategoryError,
-  } = useQuery({
+  const { data: categories = [], isLoading: isCategoryLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const response = await axiosSecure.get("/category");
       return response?.data;
     },
   });
-  if (isCategoryError) {
-    toast.error("Failed to fetch category. Please try again later.");
-  }
 
   const {
     register,
@@ -58,54 +46,74 @@ const ManageMedicines = () => {
 
   const onSubmit = async (data) => {
     try {
-      const imageFile = { image: data.image[0] };
-      const imageRes = await axiosPublic.post(image_hosting_api, imageFile, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
+      let imageUrl = currentMedicine?.image; // Default to existing image
+
+      // If a new image is uploaded
+      if (data.image && data.image[0]) {
+        const imageFile = { image: data.image[0] };
+        const imageRes = await axiosPublic.post(image_hosting_api, imageFile, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        imageUrl = imageRes.data.data.display_url;
+      }
 
       const medicineData = {
         itemName: data.itemName,
-        genericName: data.genericName,
         category: data.category,
         company: data.company,
         itemMassUnit: data.itemMassUnit,
         perUnitPrice: data.perUnitPrice,
         discount: data.discount,
-        image: imageRes.data.data.display_url,
+        description: data.description,
+        image: imageUrl, // Updated only if new image is provided
       };
 
-      if (isEditing) {
-        const res = await axiosSecure.put(
-          `/medicine/${currentMedicine._id}`,
-          medicineData
-        );
+      // Perform PUT or POST
+      const response = isEditing
+        ? await axiosSecure.put(
+            `/medicine/${currentMedicine._id}`,
+            medicineData
+          )
+        : await axiosSecure.post("/medicines", medicineData);
 
-        if (res.status === 200) {
-          toast.success("Medicine updated successfully!");
-        } else {
-          await axiosSecure.post("/medicines", medicineData); // This part is handled in case of adding
-          toast.success("Medicine added successfully!");
-          refetch(); // This will trigger refetch to update medicines
-        }
-      } else {
-        await axiosSecure.post("/medicines", medicineData);
+      // Success Toast based on operation type
+      if (isEditing && response.status === 200) {
+        toast.success("Medicine updated successfully!");
+      } else if (
+        !isEditing &&
+        response.status >= 200 &&
+        response.status < 300
+      ) {
         toast.success("Medicine added successfully!");
-        refetch();
+      } else {
+        toast.info("Operation completed.");
       }
 
+      // Refetch and reset the form
+      refetch();
       reset();
     } catch (error) {
+      console.error("Error:", error);
+      // Error Toast
       toast.error(
         error.response?.data?.message ||
           "Failed to process the request. Please try again."
       );
     } finally {
+      // Cleanup
       setIsModalOpen(false);
       setIsEditing(false);
       setCurrentMedicine(null);
     }
+  };
+
+  const handleEditMedicine = (medicine) => {
+    setCurrentMedicine(medicine);
+    setIsEditing(true);
+    setIsModalOpen(true);
+    reset();
   };
 
   const handleDeleteMedicine = (id) => {
@@ -152,14 +160,6 @@ const ManageMedicines = () => {
     }
   };
 
-  const handleEditMedicine = (medicine) => {
-    setCurrentMedicine(medicine);
-    setIsEditing(true);
-    setIsModalOpen(true);
-    reset();
-    refetch();
-  };
-
   if (medicinesLoading || isCategoryLoading) return <LoadingSpinner />;
   return (
     <div className="container mx-auto p-6">
@@ -182,7 +182,7 @@ const ManageMedicines = () => {
             <tr className="bg-gray-200">
               <th className="border border-gray-300 px-4 py-2">Image</th>
               <th className="border border-gray-300 px-4 py-2">Item Name</th>
-              <th className="border border-gray-300 px-4 py-2">Generic Name</th>
+
               <th className="border border-gray-300 px-4 py-2">Category</th>
               <th className="border border-gray-300 px-4 py-2">Company</th>
               <th className="border border-gray-300 px-4 py-2">Unit</th>
@@ -203,9 +203,7 @@ const ManageMedicines = () => {
                 <td className="border border-gray-300 px-4 py-2">
                   {medicine.itemName}
                 </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {medicine.genericName}
-                </td>
+
                 <td className="border border-gray-300 px-4 py-2">
                   {medicine.category}
                 </td>
@@ -268,28 +266,7 @@ const ManageMedicines = () => {
                   </p>
                 )}
               </div>
-              <div>
-                <label
-                  htmlFor="genericName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Generic Name
-                </label>
-                <input
-                  type="text"
-                  id="genericName"
-                  {...register("genericName", {
-                    required: "Generic Name is required",
-                  })}
-                  defaultValue={isEditing ? currentMedicine.genericName : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-                />
-                {errors.genericName && (
-                  <p className="text-red-500 text-xs">
-                    {errors.genericName.message}
-                  </p>
-                )}
-              </div>
+
               <div>
                 <label
                   htmlFor="category"
@@ -440,6 +417,28 @@ const ManageMedicines = () => {
                 {errors.discount && (
                   <p className="text-red-500 text-xs">
                     {errors.discount.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Description
+                </label>
+                <input
+                  type="text"
+                  id="description"
+                  {...register("description", {
+                    required: "Description is required ",
+                  })}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  defaultValue={isEditing ? currentMedicine.description : ""}
+                />
+                {errors.description && (
+                  <p className="text-red-500 text-xs">
+                    {errors.description.message}
                   </p>
                 )}
               </div>
