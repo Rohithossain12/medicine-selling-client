@@ -37,11 +37,12 @@ const ManageCategory = () => {
     formState: { errors },
   } = useForm();
 
-  // Handle Add/Update category
+  // Handle Add/Update category and company
   const onSubmit = async (data) => {
     try {
       const categoryData = {
-        categoryName: data.name,
+        categoryName: data.categoryName,
+        companyName: data.companyName,
         categoryImage: data.image,
       };
 
@@ -145,8 +146,9 @@ const ManageCategory = () => {
       <table className="w-full border-collapse text-center border border-gray-300">
         <thead>
           <tr>
-            <th className="border border-gray-300 p-2">Name</th>
             <th className="border border-gray-300 p-2">Image</th>
+            <th className="border border-gray-300 p-2">Name</th>
+            <th className="border border-gray-300 p-2">Company Name</th>
             <th className="border border-gray-300 p-2">Actions</th>
           </tr>
         </thead>
@@ -154,15 +156,19 @@ const ManageCategory = () => {
           {categories?.map((category) => (
             <tr key={category._id}>
               <td className="border border-gray-300 p-2">
-                {category?.categoryName}
-              </td>
-              <td className="border border-gray-300 p-2">
                 <img
                   src={category?.categoryImage}
                   alt={category?.categoryName}
                   className="w-10 h-10 mx-auto"
                 />
               </td>
+              <td className="border border-gray-300 p-2">
+                {category?.categoryName}
+              </td>
+              <td className="border border-gray-300 p-2">
+                {category?.companyName}
+              </td>
+
               <td className="border border-gray-300 p-2">
                 <button
                   onClick={() => handleEditCategory(category)}
@@ -196,18 +202,39 @@ const ManageCategory = () => {
                 </label>
                 <input
                   type="text"
-                  {...register("name", {
+                  {...register("categoryName", {
                     required: "Category name is required",
                   })}
                   defaultValue={isEditing ? currentCategory?.categoryName : ""}
                   placeholder="Enter category name"
                   className={`w-full border rounded-md p-2 ${
-                    errors.name ? "border-red-500" : "border-gray-300"
+                    errors.categoryName ? "border-red-500" : "border-gray-300"
                   }`}
                 />
-                {errors.name && (
+                {errors.categoryName && (
                   <p className="text-red-500 text-sm mt-1">
-                    {errors.name.message}
+                    {errors.categoryName.message}
+                  </p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="block font-semibold mb-1">
+                  Company Name:
+                </label>
+                <input
+                  type="text"
+                  {...register("companyName", {
+                    required: "Company name is required",
+                  })}
+                  defaultValue={isEditing ? currentCategory?.companyName : ""}
+                  placeholder="Enter company name"
+                  className={`w-full border rounded-md p-2 ${
+                    errors.companyName ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.companyName && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.companyName.message}
                   </p>
                 )}
               </div>
@@ -262,3 +289,6 @@ const ManageCategory = () => {
 };
 
 export default ManageCategory;
+
+
+
