@@ -14,6 +14,7 @@ const CategoryDetails = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [disabledProducts, setDisabledProducts] = useState([]);
 
   // Get category data
   const {
@@ -37,10 +38,13 @@ const CategoryDetails = () => {
         medicineId: medicine._id,
         name: medicine.itemName,
         company: medicine.company,
-        quantity: medicine.quantity,
+        quantity: 1,
         price: medicine.perUnitPrice,
         email: user.email,
       });
+
+      // Update the state to disable the button for this product
+      setDisabledProducts((prev) => [...prev, medicine._id]);
 
       // Show success toast
       toast.success(`${medicine.itemName} added to the cart!`);
@@ -80,9 +84,9 @@ const CategoryDetails = () => {
               <th className="p-2 border border-gray-300 hidden md:table-cell">
                 Price
               </th>
-              <th className="p-2 border border-gray-300 hidden md:table-cell">
+              {/* <th className="p-2 border border-gray-300 hidden md:table-cell">
                 Quantity
-              </th>
+              </th> */}
               <th className="p-2 border border-gray-300">Actions</th>
             </tr>
           </thead>
@@ -106,9 +110,9 @@ const CategoryDetails = () => {
                 <td className="p-2 border border-gray-300 hidden md:table-cell">
                   $ {medicine.perUnitPrice}
                 </td>
-                <td className="p-2 border border-gray-300 hidden md:table-cell">
+                {/* <td className="p-2 border border-gray-300 hidden md:table-cell">
                   {medicine.quantity}
-                </td>
+                </td> */}
                 <td className="p-2 border border-gray-300">
                   <div className="flex justify-center gap-2">
                     <button
@@ -119,7 +123,11 @@ const CategoryDetails = () => {
                     </button>
                     <button
                       className="bg-green-500 text-white px-3 py-1 rounded"
-                      onClick={() => handleAddToCart(medicine)}
+                      onClick={() =>
+                        !disabledProducts.includes(medicine._id) &&
+                        handleAddToCart(medicine)
+                      }
+                      disabled={disabledProducts.includes(medicine._id)}
                     >
                       Select
                     </button>
@@ -150,9 +158,9 @@ const CategoryDetails = () => {
             <p className="text-gray-700 font-bold">
               Price: $ {selectedMedicine.perUnitPrice}
             </p>
-            <p className="text-gray-700 font-bold">
+            {/* <p className="text-gray-700 font-bold">
               Quantity: {selectedMedicine.quantity}
-            </p>
+            </p> */}
             <p className="text-gray-700 font-bold">
               Company: {selectedMedicine.company}
             </p>

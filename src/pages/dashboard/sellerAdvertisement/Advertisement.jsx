@@ -80,7 +80,7 @@ const Advertisement = () => {
 
       <button
         onClick={() => setShowModal(true)}
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+        className="mt-4 bg-green-500 text-white px-4 py-2 rounded"
       >
         Add Advertisement
       </button>

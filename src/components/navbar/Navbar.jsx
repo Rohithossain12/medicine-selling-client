@@ -7,7 +7,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const Navbar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -46,19 +46,25 @@ const Navbar = () => {
     ? "/dashboard/sellerHome"
     : "/dashboard/userHome";
 
-  // Get category data
+  // Get add to cart data
   const {
     data: carts = [],
     isLoading,
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["cart",],
+    queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/cart/${email}`);
       return res?.data;
     },
   });
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  
 
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
