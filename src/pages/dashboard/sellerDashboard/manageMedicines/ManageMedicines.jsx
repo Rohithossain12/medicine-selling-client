@@ -65,6 +65,7 @@ const ManageMedicines = () => {
         company: data.company,
         itemMassUnit: data.itemMassUnit,
         perUnitPrice: data.perUnitPrice,
+        quantity: data.quantity,
         discount: data.discount,
         description: data.description,
         image: imageUrl, // Updated only if new image is provided
@@ -238,7 +239,7 @@ const ManageMedicines = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-auto">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <div className="bg-white p-6 rounded-lg shadow-lg  w-full max-w-md overflow-y-auto max-h-[calc(100vh-4rem)]">
             <h2 className="text-2xl font-bold mb-4">
               {isEditing ? "Edit Medicine" : "Add New Medicine"}
             </h2>
@@ -417,6 +418,28 @@ const ManageMedicines = () => {
                 {errors.discount && (
                   <p className="text-red-500 text-xs">
                     {errors.discount.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label
+                  htmlFor="quantity"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Quantity
+                </label>
+                <input
+                  type="number"
+                  id="quantity"
+                  {...register("quantity", {
+                    min: { value: 0, message: "Quantity can't be negative" },
+                  })}
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  defaultValue={isEditing ? currentMedicine.quantity : "1"}
+                />
+                {errors.quantity && (
+                  <p className="text-red-500 text-xs">
+                    {errors.quantity.message}
                   </p>
                 )}
               </div>

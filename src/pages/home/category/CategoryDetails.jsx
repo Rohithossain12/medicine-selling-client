@@ -3,12 +3,16 @@ import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const CategoryDetails = () => {
   const { categoryName } = useParams();
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [selectedMedicine, setSelectedMedicine] = useState(null);
-  const [cart, setCart] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Get category data
@@ -25,14 +29,33 @@ const CategoryDetails = () => {
     },
   });
 
+  const handleAddToCart = async (medicine) => {
+    try {
+      // Assuming you have a POST API for adding to the cart
+      await axiosSecure.post("/cart", {
+        userId: user?.id,
+        medicineId: medicine._id,
+        name: medicine.itemName,
+        company: medicine.company,
+        quantity: medicine.quantity,
+        price: medicine.perUnitPrice,
+        email: user.email,
+      });
+
+      // Show success toast
+      toast.success(`${medicine.itemName} added to the cart!`);
+
+      // Refetch medicines data to get the updated state
+      refetch();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add the medicine to the cart.");
+    }
+  };
+
   const handleViewDetails = (medicine) => {
     setSelectedMedicine(medicine);
     setIsModalOpen(true);
-  };
-
-  const handleAddToCart = (medicine) => {
-    setCart((prevCart) => [...prevCart, medicine]);
-    alert(`${medicine.name} has been added to your cart.`);
   };
 
   const closeModal = () => {
@@ -44,55 +67,69 @@ const CategoryDetails = () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-6">Medicines</h1>
-      <table className="table-auto w-full border border-gray-300">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="p-2 border border-gray-300">#</th>
-            <th className="p-2 border border-gray-300">Image</th>
-            <th className="p-2 border border-gray-300">Name</th>
-            <th className="p-2 border border-gray-300">Category</th>
-            <th className="p-2 border border-gray-300">Price</th>
-            <th className="p-2 border border-gray-300">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {medicines.map((medicine, index) => (
-            <tr key={medicine?._id} className="text-center">
-              <td className="p-2 border border-gray-300">{index + 1}</td>
-              <td className="p-2 border border-gray-300">
-                <img
-                  className="w-14 h-14 object-cover rounded mx-auto"
-                  src={medicine?.image}
-                  alt=""
-                />
-              </td>
-              <td className="p-2 border border-gray-300">
-                {medicine?.itemName}
-              </td>
-              <td className="p-2 border border-gray-300">
-                {medicine.category}
-              </td>
-              <td className="p-2 border border-gray-300">
-                $ {medicine.perUnitPrice}
-              </td>
-              <td className="p-2 border border-gray-300">
-                <button
-                  className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
-                  onClick={() => handleViewDetails(medicine)}
-                >
-                  View
-                </button>
-                <button
-                  className="bg-green-500 text-white px-3 py-1 rounded"
-                  onClick={() => handleAddToCart(medicine)}
-                >
-                  Select
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="table-auto min-w-full border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="p-2 border border-gray-300">#</th>
+              <th className="p-2 border border-gray-300">Image</th>
+              <th className="p-2 border border-gray-300">Name</th>
+              <th className="p-2 border border-gray-300 hidden sm:table-cell">
+                Category
+              </th>
+              <th className="p-2 border border-gray-300 hidden md:table-cell">
+                Price
+              </th>
+              <th className="p-2 border border-gray-300 hidden md:table-cell">
+                Quantity
+              </th>
+              <th className="p-2 border border-gray-300">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {medicines.map((medicine, index) => (
+              <tr key={medicine?._id} className="text-center">
+                <td className="p-2 border border-gray-300">{index + 1}</td>
+                <td className="p-2 border border-gray-300">
+                  <img
+                    className="w-14 h-14 object-cover rounded mx-auto"
+                    src={medicine?.image}
+                    alt=""
+                  />
+                </td>
+                <td className="p-2 border border-gray-300">
+                  {medicine?.itemName}
+                </td>
+                <td className="p-2 border border-gray-300 hidden sm:table-cell">
+                  {medicine.category}
+                </td>
+                <td className="p-2 border border-gray-300 hidden md:table-cell">
+                  $ {medicine.perUnitPrice}
+                </td>
+                <td className="p-2 border border-gray-300 hidden md:table-cell">
+                  {medicine.quantity}
+                </td>
+                <td className="p-2 border border-gray-300">
+                  <div className="flex justify-center gap-2">
+                    <button
+                      className="bg-blue-500 text-white px-3 py-1 rounded"
+                      onClick={() => handleViewDetails(medicine)}
+                    >
+                      View
+                    </button>
+                    <button
+                      className="bg-green-500 text-white px-3 py-1 rounded"
+                      onClick={() => handleAddToCart(medicine)}
+                    >
+                      Select
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Modal */}
       {isModalOpen && selectedMedicine && (
@@ -108,27 +145,30 @@ const CategoryDetails = () => {
               Category: {selectedMedicine.category}
             </p>
             <p className="text-gray-700 mb-4">
-              Description : {selectedMedicine.description}
+              Description: {selectedMedicine.description}
             </p>
             <p className="text-gray-700 font-bold">
               Price: $ {selectedMedicine.perUnitPrice}
             </p>
             <p className="text-gray-700 font-bold">
-              Company : {selectedMedicine.company}
+              Quantity: {selectedMedicine.quantity}
             </p>
             <p className="text-gray-700 font-bold">
-              Item Mass Unit : {selectedMedicine.itemMassUnit}
+              Company: {selectedMedicine.company}
             </p>
             <p className="text-gray-700 font-bold">
-              Discount : {selectedMedicine.discount} %
+              Item Mass Unit: {selectedMedicine.itemMassUnit}
+            </p>
+            <p className="text-gray-700 font-bold">
+              Discount: {selectedMedicine.discount} %
             </p>
 
             <div className="text-end">
               <button
-                className=" px-3 py-1 rounded bg-red-500 text-white "
+                className="px-3 py-1 rounded bg-red-500 text-white"
                 onClick={closeModal}
               >
-                close
+                Close
               </button>
             </div>
           </div>

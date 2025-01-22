@@ -19,6 +19,7 @@ import PaymentHistory from "../pages/dashboard/salesReport/paymentHistory/Paymen
 import Advertisement from "../pages/dashboard/sellerAdvertisement/Advertisement";
 import UserHome from "../layouts/userHome/UserHome";
 import CategoryDetails from "../pages/home/category/CategoryDetails";
+import CartPage from "../pages/CartPage/CartPage";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/cartPage",
+        element: <CartPage></CartPage>,
       },
       {
         path: "/categoryDetails/:categoryName",

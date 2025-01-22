@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const CategoryCard = ({ category }) => {
   const { categoryName } = category;
 
@@ -14,9 +13,7 @@ const CategoryCard = ({ category }) => {
   } = useQuery({
     queryKey: ["medicines", categoryName],
     queryFn: async () => {
-      const res = await axiosPublic.get(
-        `/medicines?category=${categoryName}`
-      );
+      const res = await axiosPublic.get(`/medicines?category=${categoryName}`);
       return res?.data;
     },
   });

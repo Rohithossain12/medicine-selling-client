@@ -5,6 +5,9 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 
 const Navbar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -13,7 +16,9 @@ const Navbar = () => {
   const [isAdmin] = useAdmin();
   const [isSeller] = useSeller();
   const [currentTime, setCurrentTime] = useState("");
+  const axiosSecure = useAxiosSecure();
 
+  const email = user?.email;
   const handleLogout = async () => {
     try {
       await logOut();
@@ -40,6 +45,20 @@ const Navbar = () => {
     : isSeller
     ? "/dashboard/sellerHome"
     : "/dashboard/userHome";
+
+  // Get category data
+  const {
+    data: carts = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ["cart",],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/cart/${email}`);
+      return res?.data;
+    },
+  });
 
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
@@ -68,12 +87,14 @@ const Navbar = () => {
           <Link to="/shop" className="hover:text-gray-400">
             Shop
           </Link>
-          <div className="relative cursor-pointer">
-            <FaShoppingCart className="text-xl hover:text-gray-400" />
-            <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-              0
-            </p>
-          </div>
+          <Link to="/cartPage">
+            <div className="relative cursor-pointer">
+              <FaShoppingCart className="text-xl hover:text-gray-400" />
+              <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {carts.length}
+              </p>
+            </div>
+          </Link>
 
           {/* Language Dropdown */}
           <div className="relative">
@@ -155,7 +176,7 @@ const Navbar = () => {
             <div className="relative cursor-pointer">
               <FaShoppingCart className="text-xl hover:text-gray-400" />
               <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
+                {carts.length}
               </p>
             </div>
             <select
