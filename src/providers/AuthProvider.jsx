@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -10,6 +11,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -49,6 +51,19 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  // change pass
+
+  const changePassword = (auth, email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        //
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -81,6 +96,7 @@ const AuthProvider = ({ children }) => {
     setErrorMessage,
     setLoading,
     userProfileUpdate,
+    changePassword,
   };
 
   return (

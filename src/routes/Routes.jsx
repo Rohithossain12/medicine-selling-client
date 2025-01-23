@@ -20,6 +20,7 @@ import Advertisement from "../pages/dashboard/sellerAdvertisement/Advertisement"
 import UserHome from "../layouts/userHome/UserHome";
 import CategoryDetails from "../pages/home/category/CategoryDetails";
 import CartPage from "../pages/CartPage/CartPage";
+import UpdateProfile from "../components/updateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "/categoryDetails/:categoryName",
         element: <CategoryDetails></CategoryDetails>,
+      },
+      {
+        path: "/updateProfile",
+        element: <UpdateProfile></UpdateProfile>,
       },
       {
         path: "/shop",

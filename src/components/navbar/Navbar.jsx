@@ -126,7 +126,7 @@ const Navbar = () => {
               />
               {profileMenuOpen && (
                 <div className="absolute right-0 mt-2 bg-white text-gray-800 rounded shadow-lg w-48">
-                  <Link className="block px-4 py-2 hover:bg-gray-100">
+                  <Link to='/updateProfile' className="block px-4 py-2 hover:bg-gray-100">
                     Update Profile
                   </Link>
                   <Link
