@@ -1,45 +1,60 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
+import toast from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Advertisement = () => {
-  const [advertisements, setAdvertisements] = useState([
-    {
-      id: 1,
-      medicine: "Paracetamol",
-      description: "Effective pain relief.",
-      image:
-        "https://www.dailychemist.com/wp-content/uploads/2020/03/para500.jpg",
-      status: true,
-    },
-    {
-      id: 2,
-      medicine: "Amoxicillin",
-      description: "Best antibiotic.",
-      image: "https://www.bioveta.cz/obrazek.php?id=336-31-1-2017.jpeg",
-      status: false,
-    },
-  ]);
+  const [showModal, setShowModal] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
-  const [newAd, setNewAd] = useState({
-    medicine: "",
-    description: "",
-    image: "",
+  const { user } = useAuth();
+  const email = user?.email;
+
+  // Fetch advertisements using tanstack query
+  const {
+    data: advertisements = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["advertisements", email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/advertisements/${email}`);
+      return res.data;
+    },
   });
 
-  const [showModal, setShowModal] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const handleAddAdvertisement = () => {
-    setAdvertisements((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        ...newAd,
-        status: false, // Default status for new advertisements
-      },
-    ]);
-    setShowModal(false);
-    setNewAd({ medicine: "", description: "", image: "" });
+  const onSubmit = async (data) => {
+    const advertisementData = {
+      description: data?.description,
+      image: data?.image,
+      medicine: data?.medicine,
+      seller: user?.email,
+      status: false,
+    };
+    try {
+      await axiosSecure.post("/advertisements", advertisementData);
+      toast.success("Advertisement added successfully!");
+      refetch();
+      setShowModal(false); // Close modal after successful submission
+      reset(); // Reset form fields
+    } catch (error) {
+      toast.error("Failed to add advertisement. Please try again.");
+    } finally {
+      setShowModal(false); // Ensure modal closes in all cases
+    }
   };
 
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Ask For Advertisement</h2>
@@ -53,8 +68,8 @@ const Advertisement = () => {
           </tr>
         </thead>
         <tbody>
-          {advertisements.map((ad) => (
-            <tr key={ad.id}>
+          {advertisements?.map((ad) => (
+            <tr key={ad._id}>
               <td className="border border-gray-300 p-2">
                 <img
                   src={ad.image}
@@ -89,50 +104,72 @@ const Advertisement = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-md w-96">
             <h3 className="text-lg font-bold mb-4">Add New Advertisement</h3>
-            <div className="mb-4">
-              <label className="block font-medium">Medicine Name</label>
-              <input
-                type="text"
-                value={newAd.medicine}
-                onChange={(e) =>
-                  setNewAd({ ...newAd, medicine: e.target.value })
-                }
-                className="w-full border px-2 py-1 rounded"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block font-medium">Description</label>
-              <textarea
-                value={newAd.description}
-                onChange={(e) =>
-                  setNewAd({ ...newAd, description: e.target.value })
-                }
-                className="w-full border px-2 py-1 rounded"
-              ></textarea>
-            </div>
-            <div className="mb-4">
-              <label className="block font-medium">Image URL</label>
-              <input
-                type="text"
-                value={newAd.image}
-                onChange={(e) => setNewAd({ ...newAd, image: e.target.value })}
-                className="w-full border px-2 py-1 rounded"
-              />
-            </div>
-            <div className="flex justify-end space-x-4">
-              <button
-                onClick={() => setShowModal(false)}
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleAddAdvertisement}
-                className="bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Add
-              </button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-4">
+                <label className="block font-medium">Medicine Name</label>
+                <input
+                  {...register("medicine", {
+                    required: "Medicine name is required",
+                  })}
+                  placeholder="Enter Medicine Name"
+                  className={`w-full border rounded-md p-2 ${
+                    errors.medicine ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.medicine && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.medicine.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium">Description</label>
+                <textarea
+                  {...register("description", {
+                    required: "description is required",
+                  })}
+                  placeholder="Enter Description"
+                  className={`w-full border px-2 py-1 rounded ${
+                    errors.description ? "border-red-500" : "border-gray-300"
+                  }`}
+                ></textarea>
+                {errors.description && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.description.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block font-medium">Image URL</label>
+                <input
+                  {...register("image", { required: "Image Is Required" })}
+                  placeholder="Enter Image URL"
+                  className={`w-full border rounded-md p-2 ${
+                    errors.image ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.image && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.image.message}
+                  </p>
+                )}
+              </div>
+              <div className="flex justify-end space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white px-4 py-2 rounded"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

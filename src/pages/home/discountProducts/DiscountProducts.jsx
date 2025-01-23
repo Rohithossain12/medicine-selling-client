@@ -26,7 +26,7 @@ const DiscountProducts = () => {
     },
   });
 
-  console.log(products);
+ 
   return (
     <div>
       <SectionTitle

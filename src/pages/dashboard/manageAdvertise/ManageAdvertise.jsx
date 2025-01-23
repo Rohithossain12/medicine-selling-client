@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const ManageAdvertise = () => {
-  const [advertisements, setAdvertisements] = useState([
-    {
-      id: 1,
-      medicine: "Paracetamol",
-      seller: "hablu@gmail.com",
-      description: "Effective pain relief.",
-      image:
-        "https://www.dailychemist.com/wp-content/uploads/2020/03/para500.jpg",
-      status: true,
+  const axiosSecure = useAxiosSecure();
+  const [isToggling, setIsToggling] = useState(false);
+  const { data: advertisements = [], refetch } = useQuery({
+    queryKey: ["advertisements"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/advertisements");
+      return res.data;
     },
-    {
-      id: 2,
-      medicine: "Amoxicillin",
-      seller: "hablu2@gmail.com",
-      description: "Best antibiotic.",
-      image: "https://www.bioveta.cz/obrazek.php?id=336-31-1-2017.jpeg",
-      status: false,
-    },
-  ]);
+  });
 
+  // Toggle status of advertisement
+  const toggleStatus = async (id, currentStatus) => {
+    setIsToggling(true); // Start loading
+    try {
+      await axiosSecure.patch(`/advertisements/${id}`, {
+        status: !currentStatus,
+      });
+      toast.success(
+        currentStatus
+          ? "Advertisement removed successfully!"
+          : "Advertisement added to slider!"
+      );
+      refetch(); // Refresh data
+    } catch (error) {
+      toast.error("Failed to update status. Please try again.");
+      console.error("Failed to update status:", error);
+    } finally {
+      setIsToggling(false); // Stop loading
+    }
+  };
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Manage Advertisements</h2>
@@ -35,8 +48,8 @@ const ManageAdvertise = () => {
           </tr>
         </thead>
         <tbody>
-          {advertisements.map((ad) => (
-            <tr key={ad.id}>
+          {advertisements?.map((ad) => (
+            <tr key={ad._id}>
               <td className="border border-gray-300 p-2">
                 <img
                   src={ad.image}
@@ -49,20 +62,14 @@ const ManageAdvertise = () => {
               <td className="border border-gray-300 p-2">{ad.description}</td>
               <td className="border border-gray-300 p-2">
                 <button
-                  onClick={() =>
-                    setAdvertisements((prev) =>
-                      prev.map((item) =>
-                        item.id === ad.id
-                          ? { ...item, status: !item.status }
-                          : item
-                      )
-                    )
-                  }
+                  onClick={() => toggleStatus(ad._id, ad.status)}
                   className={`${
-                    ad.status ? "bg-red-500" : "bg-green-500"
-                  } text-white px-2 py-1 rounded-md`}
+                    ad.status ? "bg-red-400 cursor-not-allowed" : "bg-green-500"
+                  } text-white px-2 py-1 rounded-md ${
+                    isToggling && "opacity-50"
+                  }`}
                 >
-                  {ad.status ? "Remove" : "Add"}
+                  {ad.status ? "Removed" : "Add "}
                 </button>
               </td>
             </tr>
