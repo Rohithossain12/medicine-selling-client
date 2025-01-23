@@ -44,49 +44,6 @@ const ManageMedicines = () => {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = async (data) => {
-  //   try {
-  //      // Default to existing image
-
-  //
-
-  //     // Perform PUT or POST
-  //     const response = isEditing
-  //       ? await axiosSecure.put(
-  //           `/medicine/`,
-  //           medicineData
-  //         )
-  //       : await axiosSecure.post("/medicines",);
-
-  //     // Success Toast based on operation type
-  //     if (isEditing && response.status === 200) {
-  //       toast.success("Medicine updated successfully!");
-  //     } else if (
-  //       !isEditing &&
-  //       response.status >= 200 &&
-  //       response.status < 300
-  //     ) {
-  //       toast.success("Medicine added successfully!");
-  //     } else {
-  //       toast.info("Operation completed.");
-  //     }
-
-  //     // Refetch and reset the form
-  //     refetch();
-  //     reset();
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     // Error Toast
-  //     toast.error(
-  //       error.response?.data?.message ||
-  //         "Failed to process the request. Please try again."
-  //     );
-  //   } finally {
-  //     // Cleanup
-  //
-  //   }
-  // };
-
   const onSubmit = async (data) => {
     try {
       let imageUrl = currentMedicine?.image;
