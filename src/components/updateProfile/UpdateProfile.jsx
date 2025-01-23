@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
 import auth from "../../firebase/firebase.config";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateProfile = () => {
   const { user, userProfileUpdate, changePassword } = useAuth();
@@ -10,20 +11,39 @@ const UpdateProfile = () => {
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [loading, setLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   // Function to handle profile update
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
+      // Step 1: Update Firebase profile
       await userProfileUpdate(name, photoURL);
-      setIsModalOpen(false);
-      toast.success("Profile updated successfully!");
+
+      // Step 2: Update database for the specific user
+      const payload = {
+        email: user?.email,
+        name,
+        photo: photoURL,
+      };
+
+      const response = await axiosSecure.put(
+        `/user/updateProfile/${user?.email}`,
+        payload
+      );
+      console.log(response);
+      if (response.data.message) {
+        toast.success("Profile updated successfully!");
+      } else {
+        toast.error("Failed to update profile.");
+      }
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("Failed to update profile.");
+      toast.error("Failed to update profile.");
     } finally {
       setLoading(false);
+      setIsModalOpen(false);
     }
   };
 

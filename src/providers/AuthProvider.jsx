@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const axiosPublic = useAxiosPublic();
 
+
   // Create new User
   const createUser = (email, password) => {
     setLoading(true);
