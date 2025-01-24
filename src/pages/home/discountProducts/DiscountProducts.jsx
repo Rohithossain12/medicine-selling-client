@@ -26,9 +26,8 @@ const DiscountProducts = () => {
     },
   });
 
- 
   return (
-    <div>
+    <div className="pt-8">
       <SectionTitle
         heading="Discount Products"
         subHeading="Grab Great Discounts"

@@ -1,13 +1,19 @@
 import React from "react";
 import Category from "./category/Category";
 import DiscountProducts from "./discountProducts/DiscountProducts";
+import Banner from "./banner/Banner";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home page</h1>
+      {/* Banner/Slider */}
+      <div>
+        <Banner></Banner>
+      </div>
       {/* Discount Product*/}
-      <DiscountProducts></DiscountProducts>
+      <div>
+        <DiscountProducts></DiscountProducts>
+      </div>
       {/* Category Section */}
       <div>
         <Category></Category>

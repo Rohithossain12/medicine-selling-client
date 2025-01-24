@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 
 const ManageAdvertise = () => {
   const axiosSecure = useAxiosSecure();
   const [isToggling, setIsToggling] = useState(false);
-  const { data: advertisements = [], refetch } = useQuery({
+  const { data: advertisements = [], refetch,isLoading } = useQuery({
     queryKey: ["advertisements"],
     queryFn: async () => {
       const res = await axiosSecure.get("/advertisements");
@@ -34,6 +35,8 @@ const ManageAdvertise = () => {
       setIsToggling(false); // Stop loading
     }
   };
+
+  if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Manage Advertisements</h2>
@@ -81,3 +84,17 @@ const ManageAdvertise = () => {
 };
 
 export default ManageAdvertise;
+
+
+
+// const {
+//   data: advertisements = [],
+//   refetch,
+//   isLoading,
+// } = useQuery({
+//   queryKey: ["advertisements"],
+//   queryFn: async () => {
+//     const res = await axiosSecure.get("/advertisements");
+//     return res.data;
+//   },
+// });

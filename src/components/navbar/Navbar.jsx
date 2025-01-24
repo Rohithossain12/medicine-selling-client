@@ -64,8 +64,6 @@ const Navbar = () => {
     refetch();
   }, []);
 
-  
-
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">
@@ -125,8 +123,11 @@ const Navbar = () => {
                 onClick={() => setProfileMenuOpen(!profileMenuOpen)}
               />
               {profileMenuOpen && (
-                <div className="absolute right-0 mt-2 bg-white text-gray-800 rounded shadow-lg w-48">
-                  <Link to='/updateProfile' className="block px-4 py-2 hover:bg-gray-100">
+                <div className="absolute right-0 mt-2 z-10 bg-white text-gray-800 rounded shadow-lg w-48">
+                  <Link
+                    to="/updateProfile"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
                     Update Profile
                   </Link>
                   <Link
