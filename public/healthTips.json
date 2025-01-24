@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "Stay Hydrated",
+      "content": "Drinking enough water is essential for overall health.",
+      "image": "https://via.placeholder.com/150/00BFFF/FFFFFF?text=Stay+Hydrated"
+    },
+    {
+      "id": 2,
+      "title": "Regular Exercise",
+      "content": "Engage in at least 30 minutes of physical activity every day to maintain a healthy body.",
+      "image": "https://via.placeholder.com/150/FF6347/FFFFFF?text=Exercise"
+    },
+    {
+      "id": 3,
+      "title": "Take Medicines as Prescribed",
+      "content": "Always follow your doctor's advice when taking medications to avoid side effects.",
+      "image": "https://via.placeholder.com/150/32CD32/FFFFFF?text=Medicines"
+    },
+    {
+      "id": 4,
+      "title": "Eat a Balanced Diet",
+      "content": "Include a variety of fruits, vegetables, and proteins in your meals for optimal nutrition.",
+      "image": "https://via.placeholder.com/150/FFD700/FFFFFF?text=Balanced+Diet"
+    },
+    {
+      "id": 5,
+      "title": "Get Enough Sleep",
+      "content": "Aim for 7-8 hours of sleep every night to allow your body to recover and stay healthy.",
+      "image": "https://via.placeholder.com/150/8A2BE2/FFFFFF?text=Sleep+Well"
+    },
+    {
+      "id": 6,
+      "title": "Practice Stress Management",
+      "content": "Engage in activities like meditation or hobbies to reduce stress levels and improve mental health.",
+      "image": "https://via.placeholder.com/150/DC143C/FFFFFF?text=Stress-Free"
+    }
+  ]
+  

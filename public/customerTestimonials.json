@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "feedback": "PharmaWorld has been my go-to place for medicines. Great service and quick delivery!",
+      "image": "https://via.placeholder.com/150/00BFFF/FFFFFF?text=Sarah",
+      "location": "New York, USA"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "feedback": "Amazing customer support! They always ensure I get my medicines on time.",
+      "image": "https://via.placeholder.com/150/32CD32/FFFFFF?text=John",
+      "location": "London, UK"
+    },
+    {
+      "id": 3,
+      "name": "Emily Carter",
+      "feedback": "A lifesaver! Their prescription management system is a blessing for my family.",
+      "image": "https://via.placeholder.com/150/DC143C/FFFFFF?text=Emily",
+      "location": "Sydney, Australia"
+    },
+    {
+      "id": 4,
+      "name": "Michael Brown",
+      "feedback": "Super reliable and affordable. I highly recommend PharmaWorld to everyone!",
+      "image": "https://via.placeholder.com/150/FFD700/FFFFFF?text=Michael",
+      "location": "Toronto, Canada"
+    },
+    {
+      "id": 5,
+      "name": "Jessica Lee",
+      "feedback": "Quick delivery and great packaging. They never disappoint with their service!",
+      "image": "https://via.placeholder.com/150/8A2BE2/FFFFFF?text=Jessica",
+      "location": "Singapore"
+    },
+    {
+      "id": 6,
+      "name": "David Wilson",
+      "feedback": "I love how easy it is to reorder my prescriptions. Thank you, PharmaWorld!",
+      "image": "https://via.placeholder.com/150/FF4500/FFFFFF?text=David",
+      "location": "Los Angeles, USA"
+    },
+    {
+      "id": 7,
+      "name": "Sophia Turner",
+      "feedback": "They offer great discounts and promotions on medicines. Highly recommended!",
+      "image": "https://via.placeholder.com/150/1E90FF/FFFFFF?text=Sophia",
+      "location": "Berlin, Germany"
+    },
+    {
+      "id": 8,
+      "name": "Chris Evans",
+      "feedback": "Their online consultation service saved me so much time and effort!",
+      "image": "https://via.placeholder.com/150/FF1493/FFFFFF?text=Chris",
+      "location": "Melbourne, Australia"
+    },
+    {
+      "id": 9,
+      "name": "Liam Smith",
+      "feedback": "Reliable and trustworthy! I always receive genuine medicines from PharmaWorld.",
+      "image": "https://via.placeholder.com/150/9400D3/FFFFFF?text=Liam",
+      "location": "Mumbai, India"
+    },
+    {
+      "id": 10,
+      "name": "Olivia Adams",
+      "feedback": "Their mobile app makes it so convenient to track orders and find medicines.",
+      "image": "https://via.placeholder.com/150/228B22/FFFFFF?text=Olivia",
+      "location": "Paris, France"
+    }
+  ]
+  
