@@ -31,11 +31,11 @@ const CustomerTestimonials = () => {
           >
             {/* Profile Section */}
             <div className="flex items-center justify-center mb-6">
-              <img
+            <div>  <img
                 src={testimonial?.image}
                 alt={testimonial?.name}
                 className="w-20 h-20 rounded-full object-cover border-2 border-blue-600"
-              />
+              /></div>
             </div>
             {/* Feedback */}
             <p className="text-gray-700 italic text-center mb-4">

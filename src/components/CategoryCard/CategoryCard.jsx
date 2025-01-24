@@ -30,7 +30,7 @@ const CategoryCard = ({ category }) => {
             />
           </figure>
           <div className=" p-2">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-blue-600 mb-2">
               {category.categoryName}
             </h2>
             <p className="text-gray-600 mb-4">

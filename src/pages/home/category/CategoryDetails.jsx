@@ -84,9 +84,7 @@ const CategoryDetails = () => {
               <th className="p-2 border border-gray-300 hidden md:table-cell">
                 Price
               </th>
-              {/* <th className="p-2 border border-gray-300 hidden md:table-cell">
-                Quantity
-              </th> */}
+
               <th className="p-2 border border-gray-300">Actions</th>
             </tr>
           </thead>

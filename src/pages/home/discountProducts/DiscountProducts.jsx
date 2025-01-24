@@ -27,7 +27,7 @@ const DiscountProducts = () => {
   });
 
   return (
-    <div className="pt-8">
+    <div >
       <SectionTitle
         heading="Discount Products"
         subHeading="Grab Great Discounts"
@@ -52,7 +52,7 @@ const DiscountProducts = () => {
                   className="w-full h-40 object-cover rounded-lg"
                 />
                 <div className="mt-3 text-center">
-                  <h3 className="text-lg font-semibold text-gray-700">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     {product.itemName}
                   </h3>
                   <p className="text-green-500 text-sm font-medium mt-2">

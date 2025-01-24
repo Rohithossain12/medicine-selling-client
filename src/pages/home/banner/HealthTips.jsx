@@ -10,30 +10,34 @@ const HealthTips = () => {
   }, []);
 
   return (
-    <div className="mt-10 mb-10 bg-gray-100 p-6 rounded-lg ">
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
-        Health Tips & Advice
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {healthTips?.map((tip) => (
-          <div
-            key={tip?.id}
-            className="bg-white p-4 shadow-md rounded-lg "
-          >
-            {/* Image */}
+    <div className="mt-10 mb-10 bg-gray-100 p-6 rounded-lg">
+    <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+      Health Tips & Advice
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {healthTips?.map((tip) => (
+        <div
+          key={tip?.id}
+          className="bg-white shadow-md rounded-lg overflow-hidden"
+        >
+          {/* Image */}
+          <div className="w-full h-48">
             <img
               src={tip?.image}
-              alt={tip.title}
-              className="w-full h-32 object-cover rounded-t-lg mb-4"
+              alt={tip?.title}
+              className="w-full h-full object-cover"
             />
-            {/* Title */}
+          </div>
+          {/* Title */}
+          <div className="p-4">
             <h3 className="text-xl font-semibold text-blue-600">{tip?.title}</h3>
             {/* Content */}
             <p className="mt-2 text-gray-600">{tip?.content}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+  </div>
   );
 };
 
