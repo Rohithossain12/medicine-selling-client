@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const CartPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -73,6 +74,9 @@ const CartPage = () => {
 
   return (
     <div className="p-8">
+      <Helmet>
+        <title>PharmaWorld | Cart</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6">My Cart</h1>
       {carts.length === 0 ? (
         <p className="text-center text-xl md:text-2xl lg:text-3xl ">

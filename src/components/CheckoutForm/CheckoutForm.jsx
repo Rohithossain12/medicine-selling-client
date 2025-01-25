@@ -99,3 +99,4 @@ const CheckoutForm = ({ grandTotal, medicineIds, onSuccess }) => {
 };
 
 export default CheckoutForm;
+

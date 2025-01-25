@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import animationData from "../../assets/Animation - 1736878783061.json";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const Login = () => {
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 to-blue-50 px-4 py-10">
+      <Helmet>
+        <title>PharmaWorld | Login</title>
+      </Helmet>
       <div className="max-w-5xl w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
         {/* Animation Section */}
         <div className="md:w-1/2 w-full flex items-center justify-center bg-blue-100 p-6">

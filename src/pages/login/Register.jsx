@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Lottie from "react-lottie-player";
 import animationData from "../../assets/Animation - 1736873044775.json";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
@@ -53,6 +54,9 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 to-blue-50 px-4 py-10">
+      <Helmet>
+        <title>PharmaWorld | Register</title>
+      </Helmet>
       <div className="max-w-5xl w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
         {/* Animation Section */}
         <div className="md:w-1/2 w-full flex items-center justify-center bg-blue-100 p-6">

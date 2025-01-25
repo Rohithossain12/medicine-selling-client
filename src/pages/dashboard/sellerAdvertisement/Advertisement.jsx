@@ -5,6 +5,7 @@ import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const Advertisement = () => {
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +58,9 @@ const Advertisement = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div>
+      <Helmet>
+        <title>PharmaWorld | Ask For Advertisement </title>
+      </Helmet>
       <h2 className="text-xl font-bold mb-4">Ask For Advertisement</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead>

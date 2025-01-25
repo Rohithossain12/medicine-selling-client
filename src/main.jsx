@@ -6,6 +6,7 @@ import { router } from "./routes/Routes.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}></RouterProvider>
         <Toaster />
+        <Helmet></Helmet>
       </QueryClientProvider>
     </AuthProvider>
   </StrictMode>

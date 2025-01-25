@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const ManageAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -39,6 +40,9 @@ const ManageAdvertise = () => {
   if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
+      <Helmet>
+        <title>PharmaWorld | Manage Advertisements</title>
+      </Helmet>
       <h2 className="text-xl font-bold mb-4">Manage Advertisements</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead>
@@ -87,14 +91,3 @@ export default ManageAdvertise;
 
 
 
-// const {
-//   data: advertisements = [],
-//   refetch,
-//   isLoading,
-// } = useQuery({
-//   queryKey: ["advertisements"],
-//   queryFn: async () => {
-//     const res = await axiosSecure.get("/advertisements");
-//     return res.data;
-//   },
-// });

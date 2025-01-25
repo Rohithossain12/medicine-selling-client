@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const Shop = () => {
   const axiosPublic = useAxiosPublic();
@@ -121,6 +122,9 @@ const Shop = () => {
 
       {/* Table */}
       <div className="overflow-x-auto">
+        <Helmet>
+          <title>PharmaWorld | Shop</title>
+        </Helmet>
         <table className="table-auto min-w-full border border-gray-300">
           <thead>
             <tr className="bg-gray-200">

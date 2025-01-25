@@ -1,6 +1,7 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const SalesReport = () => {
   const [salesData, setSalesData] = useState([
@@ -52,6 +53,9 @@ const SalesReport = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>PharmaWorld | Sales Report</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Sales Report</h2>
 
       <table className="table-auto w-full border-collapse border text-center border-gray-300 mb-4">

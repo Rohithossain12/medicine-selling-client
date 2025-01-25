@@ -6,12 +6,16 @@ import { TbReport } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import useSeller from "../hooks/useSeller";
 import useAdmin from "../hooks/useAdmin";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isSeller] = useSeller();
   return (
     <div className="drawer lg:drawer-open">
+      <Helmet>
+        <title>PharmaWorld | Dashboard</title>
+      </Helmet>
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
       {/* Main Content */}

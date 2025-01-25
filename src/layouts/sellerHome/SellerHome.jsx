@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const SellerHome = () => {
   const [salesData] = useState([
@@ -17,6 +18,9 @@ const SellerHome = () => {
     .reduce((sum, sale) => sum + sale.price, 0);
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>PharmaWorld | Seller Home</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Seller Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
         <div className="p-4 bg-green-100 border border-green-500 rounded">

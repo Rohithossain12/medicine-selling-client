@@ -4,10 +4,14 @@ import DiscountProducts from "./discountProducts/DiscountProducts";
 import Banner from "./banner/Banner";
 import HealthTips from "./banner/HealthTips";
 import CustomerTestimonials from "./CustomerTestimonials";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>PharmaWorld | Home</title>
+      </Helmet>
       {/* Banner/Slider */}
       <div>
         <Banner></Banner>

@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner";
 import useAuth from "../../../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -79,7 +80,9 @@ const ManageMedicines = () => {
           medicineData
         );
 
-        if (res.status === 200) {
+        console.log(res);
+
+        if (res.data.modifiedCount > 0) {
           toast.success("Medicine updated successfully!");
           refetch(); // Refresh Medicine
         }
@@ -157,6 +160,11 @@ const ManageMedicines = () => {
   if (medicinesLoading || isCategoryLoading) return <LoadingSpinner />;
   return (
     <div className="container mx-auto p-6">
+      <Helmet>
+        <title>
+          PharmaWorld | Manage Medicines
+        </title>
+      </Helmet>
       <div className="mb-5">
         <h1 className="text-2xl font-bold mb-2">Manage Medicines</h1>
         <button

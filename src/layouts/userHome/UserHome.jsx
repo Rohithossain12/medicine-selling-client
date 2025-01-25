@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const UserHome = () => {
   const [payments, setPayments] = useState([
@@ -30,6 +31,9 @@ const UserHome = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>PharmaWorld | Payment History</title>
+      </Helmet>
       <h2 className="text-xl font-bold mb-4">Payment History</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead>

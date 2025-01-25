@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const PaymentHistory = () => {
   const [paymentHistory, setPaymentHistory] = useState([
@@ -19,6 +20,9 @@ const PaymentHistory = () => {
   ]);
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>PharmaWorld | Payment History</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Payment History</h1>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>

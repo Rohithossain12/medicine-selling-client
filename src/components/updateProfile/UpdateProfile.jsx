@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
 import auth from "../../firebase/firebase.config";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
   const { user, userProfileUpdate, changePassword } = useAuth();
@@ -49,6 +50,9 @@ const UpdateProfile = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
+      <Helmet>
+        <title>PharmaWorld | Update Profile</title>
+      </Helmet>
       {/* Banner Image */}
       <div className="h-32 bg-green-200 flex justify-center items-center">
         <img

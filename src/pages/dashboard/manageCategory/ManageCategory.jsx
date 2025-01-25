@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const ManageCategory = () => {
   const axiosSecure = useAxiosSecure();
@@ -131,6 +132,9 @@ const ManageCategory = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>PharmaWorld | Manage Categories</title>
+      </Helmet>
       <h2 className="text-xl font-bold mb-4">Manage Categories</h2>
       <button
         onClick={() => {

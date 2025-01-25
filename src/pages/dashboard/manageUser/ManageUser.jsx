@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -53,6 +54,9 @@ const ManageUser = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>PharmaWorld | Manage User</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
