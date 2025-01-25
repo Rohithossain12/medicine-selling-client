@@ -5,10 +5,12 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner";
+import useAuth from "../../../../hooks/useAuth";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const ManageMedicines = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,6 +62,7 @@ const ManageMedicines = () => {
 
       const medicineData = {
         itemName: data.itemName,
+        email: user?.email,
         category: data.category,
         company: data.company,
         itemMassUnit: data.itemMassUnit,

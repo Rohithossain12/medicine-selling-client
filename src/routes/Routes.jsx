@@ -21,6 +21,8 @@ import UserHome from "../layouts/userHome/UserHome";
 import CategoryDetails from "../pages/home/category/CategoryDetails";
 import CartPage from "../pages/CartPage/CartPage";
 import UpdateProfile from "../components/updateProfile/UpdateProfile";
+import CheckoutPage from "../pages/checkoutPage/CheckoutPage";
+import InvoicePage from "../pages/InvoicePage/InvoicePage";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ export const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop></Shop>,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage></CheckoutPage>,
+      },
+      {
+        path: "/invoice",
+        element: <InvoicePage></InvoicePage>,
       },
     ],
   },

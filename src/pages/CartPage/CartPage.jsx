@@ -4,10 +4,12 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const email = user?.email;
 
@@ -24,6 +26,11 @@ const CartPage = () => {
       return res?.data;
     },
   });
+
+  // Calculate total price
+  const getTotalPrice = () => {
+    return carts.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
 
   const handleQuantityChange = async (itemId, quantity) => {
     try {
@@ -125,8 +132,11 @@ const CartPage = () => {
                         </button>
                       </div>
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
-                      $ {item.totalPrice}
+                    <td
+                      className="border border-gray-300 px-4 py-2"
+                      // defaultValue={item.price}
+                    >
+                      ${item.price * item.quantity}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <button
@@ -148,7 +158,17 @@ const CartPage = () => {
             >
               Clear Cart
             </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+            <button
+              onClick={() =>
+                navigate("/checkout", {
+                  state: {
+                    grandTotal: getTotalPrice(),
+                    medicineIds: carts.map((item) => item._id), // Pass medicine IDs
+                  },
+                })
+              }
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+            >
               Proceed to Checkout
             </button>
           </div>
