@@ -1,29 +1,48 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner";
 
 const PaymentHistory = () => {
-  const [paymentHistory, setPaymentHistory] = useState([
-    {
-      id: 1,
-      medicine: "Paracetamol",
-      buyer: "hablu1@gmail.com",
-      totalPrice: 100,
-      paymentStatus: "Paid",
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const email = user?.email;
+
+  // Fetch orders data using React Query
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/order-details`);
+      return res?.data;
     },
-    {
-      id: 2,
-      medicine: "Amoxicillin",
-      buyer: "hablu2@gmail.com",
-      totalPrice: 150,
-      paymentStatus: "Pending",
-    },
-  ]);
+  });
+
+  const paymentHistory = orders.flatMap((order) =>
+    order.medicineItem.map((item) => ({
+      medicine: item.itemName,
+      buyer: order.buyer,
+      totalPrice: item.totalPrice,
+      paymentStatus: order.status ? "Paid" : "Pending",
+    }))
+  );
+
+
+  if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div className="container mx-auto p-4">
       <Helmet>
         <title>PharmaWorld | Payment History</title>
       </Helmet>
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Payment History</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+        Payment History
+      </h1>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>
