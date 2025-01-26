@@ -21,7 +21,7 @@ const SellerHome = () => {
       <Helmet>
         <title>PharmaWorld | Seller Home</title>
       </Helmet>
-      <h1 className="text-2xl font-bold mb-4">Seller Dashboard</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Seller Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
         <div className="p-4 bg-green-100 border border-green-500 rounded">
           <h2 className="text-xl font-semibold">Paid Total</h2>
@@ -32,7 +32,7 @@ const SellerHome = () => {
           <p className="text-2xl font-bold text-yellow-600">${pendingTotal}</p>
         </div>
       </div>
-      <h2 className="text-xl font-bold mt-6 mb-4">Sales Details</h2>
+      <h2 className="text-xl text-green-500 font-bold mt-6 mb-4">Sales Details</h2>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>

@@ -23,7 +23,7 @@ const PaymentHistory = () => {
       <Helmet>
         <title>PharmaWorld | Payment History</title>
       </Helmet>
-      <h1 className="text-2xl font-bold mb-4">Payment History</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Payment History</h1>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>

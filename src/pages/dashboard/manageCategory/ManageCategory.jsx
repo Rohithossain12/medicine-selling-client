@@ -135,7 +135,7 @@ const ManageCategory = () => {
       <Helmet>
         <title>PharmaWorld | Manage Categories</title>
       </Helmet>
-      <h2 className="text-xl font-bold mb-4">Manage Categories</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Manage Categories</h2>
       <button
         onClick={() => {
           setShowModal(true);

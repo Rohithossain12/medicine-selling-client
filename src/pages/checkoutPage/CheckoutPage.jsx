@@ -12,7 +12,7 @@ const CheckoutPage = () => {
 
   // Assume the total amount is passed via state
   const grandTotal = state?.grandTotal || 0;
-  const medicineIds = state?.medicineIds || [];
+  const medicineItems = state?.medicineItems || []; 
   return (
     <div className="p-8">
         <Helmet><title>PharmaWorld | Checkout</title></Helmet>
@@ -21,7 +21,7 @@ const CheckoutPage = () => {
       <Elements stripe={stripePromise}>
         <CheckoutForm
           grandTotal={grandTotal}
-          medicineIds={medicineIds}
+          medicineItems={medicineItems}
           onSuccess={(_id) => {
             console.log("Order ID: ", _id);
             navigate("/invoice", {

@@ -246,7 +246,7 @@ const Shop = () => {
 
             <div className="text-end">
               <button
-                className="px-3 py-1 rounded bg-red-500 text-white"
+                className="px-3 py-1 rounded bg-green-500 text-white"
                 onClick={closeModal}
               >
                 Close

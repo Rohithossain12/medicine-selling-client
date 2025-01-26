@@ -5,7 +5,7 @@ import { MdPayment } from "react-icons/md";
 const AdminHome = () => {
   return (
     <div className="mb-8">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-green-500 font-bold mb-4">Admin Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-blue-500 text-white p-4 rounded-md flex items-center">
           <FaMoneyBillWave className="text-4xl mr-4" />

@@ -61,7 +61,7 @@ const Advertisement = () => {
       <Helmet>
         <title>PharmaWorld | Ask For Advertisement </title>
       </Helmet>
-      <h2 className="text-xl font-bold mb-4">Ask For Advertisement</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Ask For Advertisement</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>

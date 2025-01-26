@@ -4,8 +4,9 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
-const CheckoutForm = ({ grandTotal, medicineIds, onSuccess }) => {
+const CheckoutForm = ({ grandTotal, medicineItems, onSuccess }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const stripe = useStripe();
@@ -61,7 +62,10 @@ const CheckoutForm = ({ grandTotal, medicineIds, onSuccess }) => {
           totalAmount: grandTotal,
           paymentStatus: result.paymentIntent.status,
           transactionId: result.paymentIntent.id,
-          medicineIds,
+          medicineItem: medicineItems.map((item) => ({
+            medicineId: item.id, // Extract the medicine ID
+            quantity: item.quantity, // Extract the quantity
+          })),
           status: false,
         };
 
@@ -80,6 +84,7 @@ const CheckoutForm = ({ grandTotal, medicineIds, onSuccess }) => {
     }
   };
 
+  if (medicinesLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <form onSubmit={handleSubmit} className="mt-4">
       <div className="mb-4">
@@ -99,4 +104,3 @@ const CheckoutForm = ({ grandTotal, medicineIds, onSuccess }) => {
 };
 
 export default CheckoutForm;
-

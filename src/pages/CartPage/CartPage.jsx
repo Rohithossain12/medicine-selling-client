@@ -77,7 +77,7 @@ const CartPage = () => {
       <Helmet>
         <title>PharmaWorld | Cart</title>
       </Helmet>
-      <h1 className="text-2xl font-bold mb-6">My Cart</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">My Cart</h1>
       {carts.length === 0 ? (
         <p className="text-center text-xl md:text-2xl lg:text-3xl ">
           MY cart is empty..!
@@ -167,7 +167,10 @@ const CartPage = () => {
                 navigate("/checkout", {
                   state: {
                     grandTotal: getTotalPrice(),
-                    medicineIds: carts.map((item) => item._id), // Pass medicine IDs
+                    medicineItems: carts.map((item) => ({
+                      id: item.medicineId,
+                      quantity: item.quantity, // Include the quantity here
+                    })),
                   },
                 })
               }

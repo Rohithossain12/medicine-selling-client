@@ -70,7 +70,7 @@ const CategoryDetails = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Medicines</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">Medicines</h1>
       <div className="overflow-x-auto">
         <table className="table-auto min-w-full border border-gray-300">
           <thead>

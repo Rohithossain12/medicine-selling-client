@@ -57,7 +57,7 @@ const ManageUser = () => {
       <Helmet>
         <title>PharmaWorld | Manage User</title>
       </Helmet>
-      <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
+      <h2 className=" text-xl lg:text-3xl text-blue-600 md:text-2xl font-bold mb-4">Manage Users</h2>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>

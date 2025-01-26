@@ -80,8 +80,6 @@ const ManageMedicines = () => {
           medicineData
         );
 
-        console.log(res);
-
         if (res.data.modifiedCount > 0) {
           toast.success("Medicine updated successfully!");
           refetch(); // Refresh Medicine
@@ -161,12 +159,12 @@ const ManageMedicines = () => {
   return (
     <div className="container mx-auto p-6">
       <Helmet>
-        <title>
-          PharmaWorld | Manage Medicines
-        </title>
+        <title>PharmaWorld | Manage Medicines</title>
       </Helmet>
       <div className="mb-5">
-        <h1 className="text-2xl font-bold mb-2">Manage Medicines</h1>
+        <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+          Manage Medicines
+        </h1>
         <button
           onClick={() => {
             setIsModalOpen(true);
