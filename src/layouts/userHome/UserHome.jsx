@@ -1,40 +1,41 @@
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { axiosSecure } from "../../hooks/useAxiosSecure";
 
 const UserHome = () => {
-  const [payments, setPayments] = useState([
-    {
-      id: 1,
-      medicine: "Paracetamol",
-      buyer: "hablu@gmail.com",
-      quantity: 2,
-      totalPrice: 100,
-      status: "Paid",
+  // Fetch orders data using React Query
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/order-details`);
+      return res?.data;
     },
-    {
-      id: 2,
-      medicine: "Amoxicillin",
-      buyer: "hablu2@gmail.com",
-      quantity: 1,
-      totalPrice: 50,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      medicine: "Ibuprofen",
-      buyer: "hablu3@gmail.com",
-      quantity: 3,
-      totalPrice: 150,
-      status: "Paid",
-    },
-  ]);
+  });
+
+  // Map payment history from orders data
+  const payments = orders.flatMap((order) =>
+    order.medicineItem.map((item) => ({
+      medicine: item.itemName,
+      buyer: order.buyer,
+      quantity: item.quantity,
+      totalPrice: item.totalPrice,
+      status: order.status ? "Paid" : "Pending",
+    }))
+  );
 
   return (
     <div>
       <Helmet>
         <title>PharmaWorld | Payment History</title>
       </Helmet>
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Payment History</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+        Payment History
+      </h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead>
           <tr>
