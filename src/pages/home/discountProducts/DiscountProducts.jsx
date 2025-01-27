@@ -27,12 +27,12 @@ const DiscountProducts = () => {
   });
 
   return (
-    <div >
+    <div>
       <SectionTitle
         heading="Discount Products"
         subHeading="Grab Great Discounts"
       ></SectionTitle>
-      <div>
+      <div className="relative w-full">
         <Swiper
           slidesPerView={4}
           spaceBetween={30}
@@ -41,6 +41,20 @@ const DiscountProducts = () => {
             clickable: true,
           }}
           modules={[Pagination]}
+          breakpoints={{
+            // When the viewport width is less than 640px (small devices)
+            640: {
+              slidesPerView: 1, // Show 1 slide
+            },
+            // When the viewport width is between 640px and 1024px (tablets)
+            768: {
+              slidesPerView: 2, // Show 2 slides
+            },
+            // When the viewport width is 1024px or larger (desktops)
+            1024: {
+              slidesPerView: 4, // Show 4 slides
+            },
+          }}
           className="mySwiper"
         >
           {products.map((product) => (

@@ -1,25 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CategoryCard = ({ category }) => {
   const { categoryName } = category;
 
-  const {
-    data: medicines = [],
-    isLoading,
-
-    refetch,
-  } = useQuery({
+  const { data: medicines = [] } = useQuery({
     queryKey: ["medicines", categoryName],
     queryFn: async () => {
       const res = await axiosPublic.get(`/medicines?category=${categoryName}`);
       return res?.data;
     },
   });
-
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div>

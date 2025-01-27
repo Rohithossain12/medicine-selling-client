@@ -15,10 +15,12 @@ const SellerHome = () => {
   } = useQuery({
     queryKey: ["salesData",user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/order-details?email=${user.email}`);
+      const res = await axiosSecure.get(`/order-details-seller?email=${user.email}`);
       return res?.data;
     },
   });
+
+  console.log(salesData)
 
   const paymentHistory = salesData.flatMap((order) =>
     order.medicineItem.map((item) => ({

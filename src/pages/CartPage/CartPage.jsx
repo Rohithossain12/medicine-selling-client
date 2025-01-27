@@ -77,7 +77,9 @@ const CartPage = () => {
       <Helmet>
         <title>PharmaWorld | Cart</title>
       </Helmet>
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">My Cart</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">
+        My Cart
+      </h1>
       {carts.length === 0 ? (
         <p className="text-center text-xl md:text-2xl lg:text-3xl ">
           MY cart is empty..!
@@ -136,10 +138,7 @@ const CartPage = () => {
                         </button>
                       </div>
                     </td>
-                    <td
-                      className="border border-gray-300 px-4 py-2"
-                      
-                    >
+                    <td className="border border-gray-300 px-4 py-2">
                       ${item.price * item.quantity}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
@@ -169,7 +168,7 @@ const CartPage = () => {
                     grandTotal: getTotalPrice(),
                     medicineItems: carts.map((item) => ({
                       id: item.medicineId,
-                      quantity: item.quantity, 
+                      quantity: item.quantity,
                     })),
                   },
                 })

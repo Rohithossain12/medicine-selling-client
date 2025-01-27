@@ -20,6 +20,7 @@ const Category = () => {
     },
   });
 
+
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div className="mt-10 mb-10 ">
