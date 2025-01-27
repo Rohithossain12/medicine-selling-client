@@ -43,7 +43,7 @@ const Banner = () => {
             <img
               src={advertisement?.image}
               alt={advertisement?.medicine}
-              className="w-full h-[500px] object-cover" // Changed object-cover to object-contain
+              className="w-full h-[500px] object-cover" 
             />
             {/* Text Overlay */}
             <div className="absolute inset-0 flex items-center justify-center">

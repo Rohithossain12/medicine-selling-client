@@ -60,10 +60,6 @@ const Navbar = () => {
     },
   });
 
-  useEffect(() => {
-    refetch();
-  }, []);
-
   return (
     <nav className="bg-gray-800 text-white px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">

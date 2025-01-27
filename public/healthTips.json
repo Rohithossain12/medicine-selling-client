@@ -1,39 +1,38 @@
 [
-    {
-      "id": 1,
-      "title": "Stay Hydrated",
-      "content": "Drinking enough water is essential for overall health.",
-      "image": "https://www.macspharmacy.com/wp-content/uploads/2018/10/water-bottle.jpg"
-    },
-    {
-      "id": 2,
-      "title": "Regular Exercise",
-      "content": "Engage in at least 30 minutes of physical activity every day to maintain a healthy body.",
-      "image": "https://media.post.rvohealth.io/wp-content/uploads/2024/07/Day-in-the-Life-Feature-Image.jpg"
-    },
-    {
-      "id": 3,
-      "title": "Take Medicines as Prescribed",
-      "content": "Always follow your doctor's advice when taking medications to avoid side effects.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwduKay6t1rz5IDLIcRK6N-gCPWO2PK25aEw&s"
-    },
-    {
-      "id": 4,
-      "title": "Eat a Balanced Diet",
-      "content": "Include a variety of fruits, vegetables, and proteins in your meals for optimal nutrition.",
-      "image": "https://saugusscroll.org/wp-content/uploads/2021/02/Tips-Will-Help-You-Commit-to-a-Balanced-Diet-1024x681-1.png"
-    },
-    {
-      "id": 5,
-      "title": "Get Enough Sleep",
-      "content": "Aim for 7-8 hours of sleep every night to allow your body to recover and stay healthy.",
-      "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/10994/819d4389-c178-4e3d-8c3e-a48569c538d0.jpg"
-    },
-    {
-      "id": 6,
-      "title": "Practice Stress Management",
-      "content": "Engage in activities like meditation or hobbies to reduce stress levels and improve mental health.",
-      "image": "https://media.licdn.com/dms/image/D4D12AQGyUKfpAUVLbA/article-cover_image-shrink_720_1280/0/1709294959659?e=2147483647&v=beta&t=psYyjYXVx_i4Z11lFfPaDFKvZmheEnTbWrNdkP3ENgk"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Stay Hydrated",
+    "content": "Drinking enough water is essential for overall health.",
+    "image": "https://www.macspharmacy.com/wp-content/uploads/2018/10/water-bottle.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Regular Exercise",
+    "content": "Engage in at least 30 minutes of physical activity every day to maintain a healthy body.",
+    "image": "https://media.post.rvohealth.io/wp-content/uploads/2024/07/Day-in-the-Life-Feature-Image.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Take Medicines as Prescribed",
+    "content": "Always follow your doctor's advice when taking medications to avoid side effects.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwduKay6t1rz5IDLIcRK6N-gCPWO2PK25aEw&s"
+  },
+  {
+    "id": 4,
+    "title": "Eat a Balanced Diet",
+    "content": "Include a variety of fruits, vegetables, and proteins in your meals for optimal nutrition.",
+    "image": "https://saugusscroll.org/wp-content/uploads/2021/02/Tips-Will-Help-You-Commit-to-a-Balanced-Diet-1024x681-1.png"
+  },
+  {
+    "id": 5,
+    "title": "Get Enough Sleep",
+    "content": "Aim for 7-8 hours of sleep every night to allow your body to recover and stay healthy.",
+    "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/10994/819d4389-c178-4e3d-8c3e-a48569c538d0.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Practice Stress Management",
+    "content": "Engage in activities like meditation or hobbies to reduce stress levels and improve mental health.",
+    "image": "https://media.licdn.com/dms/image/D4D12AQGyUKfpAUVLbA/article-cover_image-shrink_720_1280/0/1709294959659?e=2147483647&v=beta&t=psYyjYXVx_i4Z11lFfPaDFKvZmheEnTbWrNdkP3ENgk"
+  }
+]

@@ -18,7 +18,7 @@ const ManageAdvertise = () => {
 
   // Toggle status of advertisement
   const toggleStatus = async (id, currentStatus) => {
-    setIsToggling(true); // Start loading
+    setIsToggling(true); 
     try {
       await axiosSecure.patch(`/advertisements/${id}`, {
         status: !currentStatus,
@@ -28,12 +28,12 @@ const ManageAdvertise = () => {
           ? "Advertisement removed successfully!"
           : "Advertisement added to slider!"
       );
-      refetch(); // Refresh data
+      refetch(); 
     } catch (error) {
       toast.error("Failed to update status. Please try again.");
       console.error("Failed to update status:", error);
     } finally {
-      setIsToggling(false); // Stop loading
+      setIsToggling(false); 
     }
   };
 

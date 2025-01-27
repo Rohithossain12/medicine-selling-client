@@ -46,12 +46,12 @@ const Advertisement = () => {
       await axiosSecure.post("/advertisements", advertisementData);
       toast.success("Advertisement added successfully!");
       refetch();
-      setShowModal(false); // Close modal after successful submission
-      reset(); // Reset form fields
+      setShowModal(false); 
+      reset(); 
     } catch (error) {
       toast.error("Failed to add advertisement. Please try again.");
     } finally {
-      setShowModal(false); // Ensure modal closes in all cases
+      setShowModal(false); 
     }
   };
 

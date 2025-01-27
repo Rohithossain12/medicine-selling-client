@@ -23,6 +23,8 @@ import CartPage from "../pages/CartPage/CartPage";
 import UpdateProfile from "../components/updateProfile/UpdateProfile";
 import CheckoutPage from "../pages/checkoutPage/CheckoutPage";
 import InvoicePage from "../pages/InvoicePage/InvoicePage";
+import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -76,49 +78,93 @@ export const router = createBrowserRouter([
 
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageUser",
-        element: <ManageUser></ManageUser>,
+        element: (
+          <AdminRoute>
+            <ManageUser></ManageUser>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageCategory",
-        element: <ManageCategory></ManageCategory>,
+        element: (
+          <AdminRoute>
+            <ManageCategory></ManageCategory>
+          </AdminRoute>
+        ),
       },
       {
         path: "paymentManagement",
-        element: <ManagePayment></ManagePayment>,
+        element: (
+          <AdminRoute>
+            <ManagePayment></ManagePayment>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageAdvertise",
-        element: <ManageAdvertise></ManageAdvertise>,
+        element: (
+          <AdminRoute>
+            <ManageAdvertise></ManageAdvertise>
+          </AdminRoute>
+        ),
       },
       {
         path: "salesReport",
-        element: <SalesReport></SalesReport>,
+        element: (
+          <AdminRoute>
+            <SalesReport></SalesReport>
+          </AdminRoute>
+        ),
       },
 
       // seller only routes
       {
         path: "sellerHome",
-        element: <SellerHome></SellerHome>,
+        element: (
+          <SellerRoute>
+            <SellerHome></SellerHome>
+          </SellerRoute>
+        ),
       },
       {
         path: "manageMedicines",
-        element: <ManageMedicines></ManageMedicines>,
+        element: (
+          <SellerRoute>
+            <ManageMedicines></ManageMedicines>
+          </SellerRoute>
+        ),
       },
       {
         path: "manageMedicines",
-        element: <ManageMedicines></ManageMedicines>,
+        element: (
+          <SellerRoute>
+            <ManageMedicines></ManageMedicines>
+          </SellerRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <SellerRoute>
+            <PaymentHistory></PaymentHistory>
+          </SellerRoute>
+        ),
       },
       {
         path: "askForAdvertisement",
-        element: <Advertisement></Advertisement>,
+        element: (
+          <SellerRoute>
+            <Advertisement></Advertisement>
+          </SellerRoute>
+        ),
       },
       {
         path: "userHome",

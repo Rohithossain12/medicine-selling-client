@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CheckoutForm = ({ grandTotal, medicineItems, onSuccess }) => {
   const axiosSecure = useAxiosSecure();
@@ -13,35 +11,19 @@ const CheckoutForm = ({ grandTotal, medicineItems, onSuccess }) => {
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Fetch medicines using TanStack Query
-  const {
-    data: medicines = [],
-    isLoading: medicinesLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["medicines"],
-    queryFn: async () => {
-      const response = await axiosSecure.get("/medicines");
-      return response?.data;
-    },
-  });
-
-  const {} = medicines;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!stripe || !elements) return;
+    if (!stripe || !elements) return; 
 
     setIsProcessing(true);
 
     try {
       // 1. Create Payment Intent
       const { clientSecret } = (
-        await axiosSecure.post(
-          "/create-payment-intent",
-          { amount: grandTotal * 100 } // Convert to cents for Stripe
-        )
+        await axiosSecure.post("/create-payment-intent", {
+          amount: grandTotal * 100,
+        })
       ).data;
 
       // 2. Confirm Payment
@@ -63,28 +45,26 @@ const CheckoutForm = ({ grandTotal, medicineItems, onSuccess }) => {
           paymentStatus: result.paymentIntent.status,
           transactionId: result.paymentIntent.id,
           medicineItem: medicineItems.map((item) => ({
-            medicineId: item.id, // Extract the medicine ID
-            quantity: item.quantity, // Extract the quantity
+            medicineId: item.id,
+            quantity: item.quantity,
           })),
           status: false,
         };
 
         const response = await axiosSecure.post("/orders", orderDetails);
         if (response.data.success) {
-          onSuccess(); // Navigate to invoice or success page
+          onSuccess();
         } else {
           toast.error("Failed to save order details.");
         }
       }
     } catch (error) {
-      console.error(error);
       toast.error("Payment failed. Please try again.");
     } finally {
       setIsProcessing(false);
     }
   };
 
-  if (medicinesLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <form onSubmit={handleSubmit} className="mt-4">
       <div className="mb-4">

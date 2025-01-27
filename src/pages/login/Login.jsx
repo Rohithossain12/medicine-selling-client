@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Lottie from "react-lottie-player";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import animationData from "../../assets/Animation - 1736878783061.json";
 import SocialLogin from "../../components/socialLogin/SocialLogin";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +21,12 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await login(data.email, data.password);
-      toast.success(`Welcome, ${user.displayName}!`);
+
+      // Assuming result contains the user object after successful login
+      const user = result.user;
+
+      // Show a success toast with the user's display name
+      toast.success(`Welcome, ${user.displayName || user.email}!`);
       navigate("/");
     } catch (error) {
       toast.error(error.message || "Failed to log in. Please try again.");
@@ -110,8 +116,8 @@ const Login = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="btn w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
               disabled={loading}
+              className="btn w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
             >
               {loading ? "Logging in..." : "Log In"}
             </button>

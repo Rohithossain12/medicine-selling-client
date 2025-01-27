@@ -2,17 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 
 const UserHome = () => {
+  const { user } = useAuth();
   // Fetch orders data using React Query
-  const {
-    data: orders = [],
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["orders"],
+  const { data: orders = [], isLoading } = useQuery({
+    queryKey: ["orders", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/order-details`);
+      const res = await axiosSecure.get(`/order-details?email=${user?.email}`);
       return res?.data;
     },
   });
@@ -22,11 +21,14 @@ const UserHome = () => {
     order.medicineItem.map((item) => ({
       medicine: item.itemName,
       buyer: order.buyer,
+      transactionId: order.transactionId,
+
       quantity: item.quantity,
       totalPrice: item.totalPrice,
       status: order.status ? "Paid" : "Pending",
     }))
   );
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div>
@@ -42,6 +44,8 @@ const UserHome = () => {
             <th className="border border-gray-300 p-2">Medicine</th>
             <th className="border border-gray-300 p-2">Buyer Email</th>
             <th className="border border-gray-300 p-2">Quantity</th>
+            <th className="border border-gray-300 p-2"> transactionId</th>
+
             <th className="border border-gray-300 p-2">Total Price</th>
             <th className="border border-gray-300 p-2">Payment Status</th>
           </tr>
@@ -52,6 +56,9 @@ const UserHome = () => {
               <td className="border border-gray-300 p-2">{payment.medicine}</td>
               <td className="border border-gray-300 p-2">{payment.buyer}</td>
               <td className="border border-gray-300 p-2">{payment.quantity}</td>
+              <td className="border border-gray-300 p-2">
+                {payment.transactionId}
+              </td>
               <td className="border border-gray-300 p-2">
                 ${payment.totalPrice}
               </td>

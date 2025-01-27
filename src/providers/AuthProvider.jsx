@@ -29,6 +29,7 @@ const AuthProvider = ({ children }) => {
   };
   // login user
   const login = (email, password) => {
+    setLoading(true)
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -85,7 +86,7 @@ const AuthProvider = ({ children }) => {
     return () => unSubscribe();
   }, [axiosPublic]);
 
-  // setLoading(false);
+ 
   const authInfo = {
     user,
     loading,

@@ -8,18 +8,15 @@ import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-
-  const email = user?.email;
-
   // Fetch orders data using React Query
   const {
     data: orders = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders",user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/order-details`);
+      const res = await axiosSecure.get(`/order-details?email=${user?.email}`);
       return res?.data;
     },
   });

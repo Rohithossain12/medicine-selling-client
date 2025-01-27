@@ -138,7 +138,7 @@ const CartPage = () => {
                     </td>
                     <td
                       className="border border-gray-300 px-4 py-2"
-                      // defaultValue={item.price}
+                      
                     >
                       ${item.price * item.quantity}
                     </td>
@@ -169,7 +169,7 @@ const CartPage = () => {
                     grandTotal: getTotalPrice(),
                     medicineItems: carts.map((item) => ({
                       id: item.medicineId,
-                      quantity: item.quantity, // Include the quantity here
+                      quantity: item.quantity, 
                     })),
                   },
                 })

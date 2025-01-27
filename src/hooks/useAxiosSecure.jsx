@@ -9,25 +9,24 @@ export const axiosSecure = axios.create({
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
+
   axiosSecure.interceptors.request.use(
-    function (config) {
+    (config) => {
       const token = localStorage.getItem("access-token");
-      config.headers.authorization = `Bearer ${token}`;
+      if (token) {
+        config.headers.authorization = `Bearer ${token}`;
+      }
       return config;
     },
-    function (error) {
-      return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
   );
 
-  //intercepts 401 and 403 status
   axiosSecure.interceptors.response.use(
-    function (response) {
-      return response;
-    },
+    (response) => response,
     async (error) => {
-      const status = error.response.status;
-      // for 401 or 403 logout the user and move to the login page
+      const status = error.response?.status;
+
+      // Handle 401 and 403 errors
       if (status === 401 || status === 403) {
         await logOut();
         navigate("/login");

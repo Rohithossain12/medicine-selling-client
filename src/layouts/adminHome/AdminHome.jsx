@@ -3,6 +3,7 @@ import React from "react";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 const AdminHome = () => {
   // Fetch orders data using React Query
@@ -35,6 +36,8 @@ const AdminHome = () => {
     .reduce((sum, sale) => sum + sale.totalPrice, 0);
 
   const totalSalesRevenue = paidTotal + pendingTotal;
+
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div className="mb-8">

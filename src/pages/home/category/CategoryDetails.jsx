@@ -70,7 +70,9 @@ const CategoryDetails = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">Medicines</h1>
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">
+        Medicines
+      </h1>
       <div className="overflow-x-auto">
         <table className="table-auto min-w-full border border-gray-300">
           <thead>
@@ -108,9 +110,7 @@ const CategoryDetails = () => {
                 <td className="p-2 border border-gray-300 hidden md:table-cell">
                   $ {medicine.perUnitPrice}
                 </td>
-                {/* <td className="p-2 border border-gray-300 hidden md:table-cell">
-                  {medicine.quantity}
-                </td> */}
+
                 <td className="p-2 border border-gray-300">
                   <div className="flex justify-center gap-2">
                     <button
@@ -156,9 +156,7 @@ const CategoryDetails = () => {
             <p className="text-gray-700 font-bold">
               Price: $ {selectedMedicine.perUnitPrice}
             </p>
-            {/* <p className="text-gray-700 font-bold">
-              Quantity: {selectedMedicine.quantity}
-            </p> */}
+            
             <p className="text-gray-700 font-bold">
               Company: {selectedMedicine.company}
             </p>

@@ -54,15 +54,15 @@ const ManageCategory = () => {
         );
         if (res.status === 200) {
           toast.success("Category updated successfully!");
-          refetch(); // Refresh categories
+          refetch(); 
         }
       } else {
         await axiosSecure.post("/category", categoryData);
         toast.success("Category added successfully!");
-        refetch(); // Refresh categories
+        refetch(); 
       }
 
-      reset(); // Clear the form
+      reset(); 
     } catch (error) {
       toast.error(
         error.response?.data?.message ||

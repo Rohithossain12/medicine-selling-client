@@ -1,19 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
+import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 const SellerHome = () => {
+  const axiosSecure = useAxiosSecure();
+  const {user}=useAuth()
   // Fetch orders data using React Query
   const {
     data: salesData = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["salesData"],
+    queryKey: ["salesData",user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get("/order-details");
+      const res = await axiosSecure.get(`/order-details?email=${user.email}`);
       return res?.data;
     },
   });

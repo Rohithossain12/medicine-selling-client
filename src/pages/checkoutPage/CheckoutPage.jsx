@@ -10,12 +10,14 @@ const CheckoutPage = () => {
   const location = useLocation();
   const { state } = location;
 
-  // Assume the total amount is passed via state
+  //  total amount is passed via state
   const grandTotal = state?.grandTotal || 0;
-  const medicineItems = state?.medicineItems || []; 
+  const medicineItems = state?.medicineItems || [];
   return (
     <div className="p-8">
-        <Helmet><title>PharmaWorld | Checkout</title></Helmet>
+      <Helmet>
+        <title>PharmaWorld | Checkout</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6">Checkout</h1>
       <p className="text-xl">Total Amount: ${grandTotal.toFixed(2)}</p>
       <Elements stripe={stripePromise}>
@@ -23,9 +25,8 @@ const CheckoutPage = () => {
           grandTotal={grandTotal}
           medicineItems={medicineItems}
           onSuccess={(_id) => {
-            console.log("Order ID: ", _id);
             navigate("/invoice", {
-              state: { _id },
+              state: { _id, grandTotal },
             });
           }}
         />

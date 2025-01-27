@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const CategoryCard = ({ category }) => {
   const { categoryName } = category;
@@ -8,7 +9,7 @@ const CategoryCard = ({ category }) => {
   const {
     data: medicines = [],
     isLoading,
-    isError,
+
     refetch,
   } = useQuery({
     queryKey: ["medicines", categoryName],
@@ -17,6 +18,8 @@ const CategoryCard = ({ category }) => {
       return res?.data;
     },
   });
+
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div>

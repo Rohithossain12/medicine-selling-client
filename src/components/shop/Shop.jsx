@@ -20,7 +20,7 @@ const Shop = () => {
   const itemsPerPage = 10;
 
   // Sorting states
-  const [sortByPrice, setSortByPrice] = useState(null); // 'asc' or 'desc'
+  const [sortByPrice, setSortByPrice] = useState(null);
 
   // Search state
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +40,6 @@ const Shop = () => {
 
   const handleAddToCart = async (medicine) => {
     try {
-      // Assuming you have a POST API for adding to the cart
       await axiosSecure.post("/cart", {
         userId: user?.id,
         medicineId: medicine._id,
@@ -51,16 +50,12 @@ const Shop = () => {
         email: user.email,
       });
 
-      // Update the state to disable the button for this product
       setDisabledProducts((prev) => [...prev, medicine._id]);
 
-      // Show success toast
       toast.success(`${medicine.itemName} added to the cart!`);
 
-      // Refetch medicines data to get the updated state
       refetch();
     } catch (error) {
-      console.error(error);
       toast.error("Failed to add the medicine to the cart.");
     }
   };
@@ -75,7 +70,6 @@ const Shop = () => {
     setSelectedMedicine(null);
   };
 
-  // Filtering medicines based on search term
   const filteredMedicines = medicines.filter(
     (medicine) =>
       medicine.itemName.toLowerCase().includes(searchTerm.toLowerCase()) ||

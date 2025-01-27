@@ -24,9 +24,9 @@ const ManageMedicines = () => {
     isLoading: medicinesLoading,
     refetch,
   } = useQuery({
-    queryKey: ["medicines"],
+    queryKey: ["medicines", user?.email],
     queryFn: async () => {
-      const response = await axiosSecure.get("/medicines");
+      const response = await axiosSecure.get(`/medicines?email=${user?.email}`);
       return response?.data;
     },
   });
@@ -71,7 +71,7 @@ const ManageMedicines = () => {
         quantity: data.quantity,
         discount: data.discount,
         description: data.description,
-        image: imageUrl, // Updated only if new image is provided
+        image: imageUrl,
       };
 
       if (isEditing) {
@@ -82,15 +82,15 @@ const ManageMedicines = () => {
 
         if (res.data.modifiedCount > 0) {
           toast.success("Medicine updated successfully!");
-          refetch(); // Refresh Medicine
+          refetch(); 
         }
       } else {
         await axiosSecure.post("/medicines", medicineData);
         toast.success("Medicine added successfully!");
-        refetch(); // Refresh Medicine
+        refetch(); 
       }
 
-      reset(); // Clear the form
+      reset(); 
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
