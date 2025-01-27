@@ -30,9 +30,22 @@ const CategoryDetails = () => {
     },
   });
 
+  // Get user data by TanStack Query
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/user");
+      return res?.data;
+    },
+  });
+
+  // Find logged-in user's role
+  const loggedInUser = users.find((u) => u.email === user?.email);
+  const userRole = loggedInUser?.role;
+
   const handleAddToCart = async (medicine) => {
     try {
-      // Assuming you have a POST API for adding to the cart
+      // Add medicine to cart
       await axiosSecure.post("/cart", {
         userId: user?.id,
         medicineId: medicine._id,
@@ -49,7 +62,7 @@ const CategoryDetails = () => {
       // Show success toast
       toast.success(`${medicine.itemName} added to the cart!`);
 
-      // Refetch medicines data to get the updated state
+      // Refetch medicines data
       refetch();
     } catch (error) {
       console.error(error);
@@ -66,12 +79,13 @@ const CategoryDetails = () => {
     setIsModalOpen(false);
     setSelectedMedicine(null);
   };
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="p-6">
       <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">
-        Medicines
+        Medicines in {categoryName}
       </h1>
       <div className="overflow-x-auto">
         <table className="table-auto min-w-full border border-gray-300">
@@ -86,7 +100,6 @@ const CategoryDetails = () => {
               <th className="p-2 border border-gray-300 hidden md:table-cell">
                 Price
               </th>
-
               <th className="p-2 border border-gray-300">Actions</th>
             </tr>
           </thead>
@@ -110,7 +123,6 @@ const CategoryDetails = () => {
                 <td className="p-2 border border-gray-300 hidden md:table-cell">
                   $ {medicine.perUnitPrice}
                 </td>
-
                 <td className="p-2 border border-gray-300">
                   <div className="flex justify-center gap-2">
                     <button
@@ -120,12 +132,21 @@ const CategoryDetails = () => {
                       View
                     </button>
                     <button
-                      className="bg-green-500 text-white px-3 py-1 rounded"
+                      className={`${
+                        disabledProducts.includes(medicine._id) ||
+                        userRole === "seller"
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-green-500"
+                      } text-white px-3 py-1 rounded`}
                       onClick={() =>
                         !disabledProducts.includes(medicine._id) &&
+                        userRole !== "seller" &&
                         handleAddToCart(medicine)
                       }
-                      disabled={disabledProducts.includes(medicine._id)}
+                      disabled={
+                        disabledProducts.includes(medicine._id) ||
+                        userRole === "seller"
+                      }
                     >
                       Select
                     </button>
@@ -156,7 +177,6 @@ const CategoryDetails = () => {
             <p className="text-gray-700 font-bold">
               Price: $ {selectedMedicine.perUnitPrice}
             </p>
-            
             <p className="text-gray-700 font-bold">
               Company: {selectedMedicine.company}
             </p>
@@ -166,7 +186,6 @@ const CategoryDetails = () => {
             <p className="text-gray-700 font-bold">
               Discount: {selectedMedicine.discount} %
             </p>
-
             <div className="text-end">
               <button
                 className="px-3 py-1 rounded bg-red-500 text-white"

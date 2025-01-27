@@ -1,9 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+
 // import required modules
-import { Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination } from "swiper/modules";
+
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import "./styles.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -34,45 +38,37 @@ const DiscountProducts = () => {
       ></SectionTitle>
       <div className="relative w-full">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
+          effect={"coverflow"}
+          grabCursor={true}
           centeredSlides={true}
-          pagination={{
-            clickable: true,
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
           }}
-          modules={[Pagination]}
-          breakpoints={{
-            // When the viewport width is less than 640px (small devices)
-            640: {
-              slidesPerView: 1, // Show 1 slide
-            },
-            // When the viewport width is between 640px and 1024px (tablets)
-            768: {
-              slidesPerView: 2, // Show 2 slides
-            },
-            // When the viewport width is 1024px or larger (desktops)
-            1024: {
-              slidesPerView: 4, // Show 4 slides
-            },
-          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
         >
           {products.map((product) => (
             <SwiperSlide key={product._id}>
-              <div className="bg-white shadow-md rounded-lg overflow-hidden p-4">
+              {/* Content for each product slide */}
+              <div className="product-slide">
                 <img
                   src={product.image}
-                  alt={product.itemName}
-                  className="w-full h-40 object-cover rounded-lg"
+                  alt={product.name}
+                  className="w-full h-60 object-cover rounded-md"
                 />
-                <div className="mt-3 text-center">
-                  <h3 className="text-lg font-semibold text-blue-600">
-                    {product.itemName}
-                  </h3>
-                  <p className="text-green-500 text-sm font-medium mt-2">
-                    {product.discount}% Off
-                  </p>
-                </div>
+                <h3 className="text-center mt-2 text-lg font-semibold">
+                  {product.itemName}
+                </h3>
+                <p className="text-center text-sm text-green-500">
+                  Discount: {product.discount}%
+                </p>
+               
               </div>
             </SwiperSlide>
           ))}

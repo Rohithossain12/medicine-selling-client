@@ -38,6 +38,18 @@ const Shop = () => {
     },
   });
 
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/users`);
+      return res.data;
+    },
+  });
+
+  // Find logged-in user's role
+  const loggedInUser = users.find((u) => u.email === user?.email);
+  const userRole = loggedInUser?.role;
+
   const handleAddToCart = async (medicine) => {
     try {
       await axiosSecure.post("/cart", {
@@ -93,6 +105,7 @@ const Shop = () => {
   );
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+
   return (
     <div className="mt-10 mb-10">
       <h1 className="text-2xl font-bold mb-6 text-blue-600">All Medicines</h1>
@@ -172,15 +185,20 @@ const Shop = () => {
                     </button>
                     <button
                       className={`${
-                        disabledProducts.includes(medicine._id)
+                        disabledProducts.includes(medicine._id) ||
+                        userRole === "seller"
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-green-500"
                       } text-white px-3 py-1 rounded`}
                       onClick={() =>
                         !disabledProducts.includes(medicine._id) &&
+                        userRole !== "seller" &&
                         handleAddToCart(medicine)
                       }
-                      disabled={disabledProducts.includes(medicine._id)}
+                      disabled={
+                        disabledProducts.includes(medicine._id) ||
+                        userRole === "seller"
+                      }
                     >
                       Select
                     </button>
