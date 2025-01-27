@@ -72,6 +72,8 @@ const Shop = () => {
     }
   };
 
+  
+
   const handleViewDetails = (medicine) => {
     setSelectedMedicine(medicine);
     setIsModalOpen(true);

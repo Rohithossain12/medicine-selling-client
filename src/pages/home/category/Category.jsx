@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import CategoryCard from "../../../components/CategoryCard/CategoryCard";
 
 const Category = () => {
+  
   const axiosPublic = useAxiosPublic();
   // Get category data
   const {
@@ -19,6 +20,9 @@ const Category = () => {
       return res?.data;
     },
   });
+
+
+
 
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;

@@ -1,17 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
   const { categoryName } = category;
+  const [medicines, setMedicines] = useState([]);
 
-  const { data: medicines = [] } = useQuery({
-    queryKey: ["medicines", categoryName],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/medicines?category=${categoryName}`);
-      return res?.data;
-    },
-  });
+  useEffect(() => {
+    fetch(`http://localhost:5000/medicines?category=${categoryName}`)
+      .then((res) => res.json())
+      .then((data) => setMedicines(data));
+  }, []);
 
   return (
     <div>

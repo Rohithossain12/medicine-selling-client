@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../../hooks/useAdmin";
@@ -47,12 +47,7 @@ const Navbar = () => {
     : "/dashboard/userHome";
 
   // Get add to cart data
-  const {
-    data: carts = [],
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery({
+  const { data: carts = [] } = useQuery({
     queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/cart/${email}`);
@@ -91,7 +86,7 @@ const Navbar = () => {
             <div className="relative cursor-pointer">
               <FaShoppingCart className="text-xl hover:text-gray-400" />
               <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {carts.length}
+                {carts?.length}
               </p>
             </div>
           </Link>

@@ -1,13 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-
-// import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
-
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import "./styles.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -19,9 +14,6 @@ const DiscountProducts = () => {
   // Get add to cart data
   const {
     data: products = [],
-    isLoading,
-    isError,
-    refetch,
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -68,7 +60,6 @@ const DiscountProducts = () => {
                 <p className="text-center text-sm text-green-500">
                   Discount: {product.discount}%
                 </p>
-               
               </div>
             </SwiperSlide>
           ))}
