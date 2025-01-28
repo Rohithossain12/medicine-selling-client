@@ -6,7 +6,7 @@ const CategoryCard = ({ category }) => {
   const [medicines, setMedicines] = useState([]);
 
   useEffect(() => {
-    fetch(`https://medicine-selling-server-gamma.vercel.app/medicines?category=${categoryName}`)
+    fetch(`http://localhost:5000/medicines?category=${categoryName}`)
       .then((res) => res.json())
       .then((data) => setMedicines(data));
   }, []);

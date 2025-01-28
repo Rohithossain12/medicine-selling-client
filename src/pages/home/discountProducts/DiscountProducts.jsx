@@ -12,10 +12,8 @@ const DiscountProducts = () => {
   const axiosPublic = useAxiosPublic();
 
   // Get add to cart data
-  const {
-    data: products = [],
-  } = useQuery({
-    queryKey: ["products"],
+  const { data: products = [] } = useQuery({
+    queryKey: ["product"],
     queryFn: async () => {
       const res = await axiosPublic.get("/discount-products");
       return res?.data;
@@ -45,20 +43,20 @@ const DiscountProducts = () => {
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper"
         >
-          {products.map((product) => (
-            <SwiperSlide key={product._id}>
+          {products?.map((product) => (
+            <SwiperSlide key={product?._id}>
               {/* Content for each product slide */}
               <div className="product-slide">
                 <img
-                  src={product.image}
+                  src={product?.image}
                   alt={product.name}
                   className="w-full h-60 object-cover rounded-md"
                 />
                 <h3 className="text-center mt-2 text-lg font-semibold">
-                  {product.itemName}
+                  {product?.itemName}
                 </h3>
                 <p className="text-center text-sm text-green-500">
-                  Discount: {product.discount}%
+                  Discount: {product?.discount}%
                 </p>
               </div>
             </SwiperSlide>

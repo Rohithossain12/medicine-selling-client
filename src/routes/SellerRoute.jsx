@@ -16,7 +16,7 @@ const SellerRoute = ({ children }) => {
   if (user && isSeller) {
     return children;
   }
-console.log(user)
+
   return <Navigate to="/" state={{ from: location }} replace />;
 };
 

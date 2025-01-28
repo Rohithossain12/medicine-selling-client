@@ -19,7 +19,7 @@ const SocialLogin = () => {
       const userData = {
         name: user?.displayName,
         photo: user?.photoURL,
-        role: "user", // Default role
+        role: "user",
         email: user?.email,
       };
       // Send user data to the backend
