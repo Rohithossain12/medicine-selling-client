@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 export const axiosSecure = axios.create({
-  baseURL: "medicine-selling-server-gamma.vercel.app",
+  baseURL: "https://medicine-selling-server-gamma.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -24,13 +24,6 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.response.use(
     (response) => response,
     async (error) => {
-      const status = error.response?.status;
-
-      // Handle 401 and 403 errors
-      if (status === 401 || status === 403) {
-        await logOut();
-        navigate("/login");
-      }
       return Promise.reject(error);
     }
   );

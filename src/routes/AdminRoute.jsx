@@ -12,7 +12,7 @@ const AdminRoute = ({ children }) => {
   if (loading || isAdminLoading) return <LoadingSpinner />;
 
   if (user && isAdmin) return children;
-  
+  console.log({ user });
 
   // Redirect non-admins to the home page
   return <Navigate to="/" state={{ from: location }} replace />;

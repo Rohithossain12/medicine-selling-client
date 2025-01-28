@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "medicine-selling-server-gamma.vercel.app",
+  baseURL: "https://medicine-selling-server-gamma.vercel.app",
 });
 
 const useAxiosPublic = () => {

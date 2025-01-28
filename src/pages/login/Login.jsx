@@ -21,13 +21,14 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await login(data.email, data.password);
-
+      console.log(result)
       const user = result.user;
 
       // Show a success toast with the user's display name
       toast.success(`Welcome, ${user.displayName || user.email}!`);
       navigate("/");
     } catch (error) {
+      
       toast.error(error.message || "Failed to log in. Please try again.");
     } finally {
       setLoading(false);
