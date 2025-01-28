@@ -22,7 +22,6 @@ const Login = () => {
     try {
       const result = await login(data.email, data.password);
 
-      // Assuming result contains the user object after successful login
       const user = result.user;
 
       // Show a success toast with the user's display name

@@ -35,14 +35,14 @@ const Register = () => {
       const userData = {
         name: data.name,
         photo: data.photoURL,
-        role: "user", 
+        role: "user",
         email: data.email,
       };
 
       // Send user data to the backend
       await axiosPublic.post("/users", userData);
       toast.success("Registration successful!");
-      reset(); 
+      reset();
       navigate("/");
     } catch (error) {
       toast.error(error.message || "Failed to register. Please try again.");

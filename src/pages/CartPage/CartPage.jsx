@@ -38,7 +38,7 @@ const CartPage = () => {
       const res = await axiosSecure.put(`/cart/${itemId}`, { quantity });
       if (res.data.success) {
         toast.success("Quantity updated successfully!");
-        refetch(); // Update the UI with the latest cart data
+        refetch(); 
       }
     } catch (error) {
       toast.error("Failed to update quantity. Please try again.");

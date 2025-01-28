@@ -59,7 +59,7 @@ const CategoryDetails = () => {
       // Update the state to disable the button for this product
       setDisabledProducts((prev) => [...prev, medicine._id]);
 
-      // Show success toast
+      
       toast.success(`${medicine.itemName} added to the cart!`);
 
       // Refetch medicines data

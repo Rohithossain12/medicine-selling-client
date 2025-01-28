@@ -7,7 +7,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
+
 
 const Navbar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);

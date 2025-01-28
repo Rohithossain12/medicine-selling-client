@@ -82,15 +82,15 @@ const ManageMedicines = () => {
 
         if (res.data.modifiedCount > 0) {
           toast.success("Medicine updated successfully!");
-          refetch(); 
+          refetch();
         }
       } else {
         await axiosSecure.post("/medicines", medicineData);
         toast.success("Medicine added successfully!");
-        refetch(); 
+        refetch();
       }
 
-      reset(); 
+      reset();
     } catch (error) {
       toast.error(
         error.response?.data?.message ||

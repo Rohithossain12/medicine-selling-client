@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Company Info */}
+      
           <div className="space-y-4">
             <h4 className="text-lg font-bold">Company</h4>
             <ul className="space-y-2 text-gray-400">
@@ -17,7 +17,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Quick Links */}
           <div className="space-y-4">
             <h4 className="text-lg font-bold">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
@@ -28,7 +27,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          
           <div className="space-y-4">
             <h4 className="text-lg font-bold">Contact</h4>
             <ul className="space-y-2 text-gray-400">
@@ -93,7 +92,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Media Icons */}
+        
         <div className="mt-8 flex justify-center space-x-4">
           <p className="text-gray-400 hover:text-white">
             <FaFacebook size={24} />

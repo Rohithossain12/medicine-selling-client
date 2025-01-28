@@ -5,25 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 import CategoryCard from "../../../components/CategoryCard/CategoryCard";
 
 const Category = () => {
-  
   const axiosPublic = useAxiosPublic();
   // Get category data
-  const {
-    data: categories = [],
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery({
+  const { data: categories = [], isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await axiosPublic.get("/categories");
       return res?.data;
     },
   });
-
-
-
-
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
@@ -33,12 +23,7 @@ const Category = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {categories.map((category) => (
-          <CategoryCard 
-          category={category} key={category._id}
-          
-          
-          
-          ></CategoryCard>
+          <CategoryCard category={category} key={category._id}></CategoryCard>
         ))}
       </div>
     </div>
