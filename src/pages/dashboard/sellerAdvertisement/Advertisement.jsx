@@ -46,12 +46,12 @@ const Advertisement = () => {
       await axiosSecure.post("/advertisements", advertisementData);
       toast.success("Advertisement added successfully!");
       refetch();
-      setShowModal(false); 
-      reset(); 
+      setShowModal(false);
+      reset();
     } catch (error) {
       toast.error("Failed to add advertisement. Please try again.");
     } finally {
-      setShowModal(false); 
+      setShowModal(false);
     }
   };
 
@@ -61,7 +61,9 @@ const Advertisement = () => {
       <Helmet>
         <title>PharmaWorld | Ask For Advertisement </title>
       </Helmet>
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Ask For Advertisement</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+        Ask For Advertisement
+      </h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead className="bg-orange-300">
           <tr>
