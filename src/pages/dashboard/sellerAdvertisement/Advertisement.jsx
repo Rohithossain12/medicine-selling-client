@@ -63,7 +63,7 @@ const Advertisement = () => {
       </Helmet>
       <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Ask For Advertisement</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
-        <thead>
+        <thead className="bg-orange-300">
           <tr>
             <th className="border border-gray-300 p-2">Image</th>
             <th className="border border-gray-300 p-2">Medicine</th>
@@ -89,7 +89,7 @@ const Advertisement = () => {
                     ad.status ? "bg-green-500" : "bg-red-500"
                   } text-white px-2 py-1 rounded-md`}
                 >
-                  {ad.status ? "In Slider" : "Not in Slider"}
+                  {ad.status ? " Slider" : "Reject"}
                 </span>
               </td>
             </tr>

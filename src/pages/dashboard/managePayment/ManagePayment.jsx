@@ -50,7 +50,7 @@ const ManagePayment = () => {
       </Helmet>
       <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Payment Management</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
-        <thead>
+        <thead className="bg-orange-400">
           <tr>
             <th className="border border-gray-300 p-2">Status</th>
             <th className="border border-gray-300 p-2">Amount</th>

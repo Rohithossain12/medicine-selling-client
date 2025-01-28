@@ -148,7 +148,7 @@ const ManageCategory = () => {
       </button>
 
       <table className="w-full border-collapse text-center border border-gray-300">
-        <thead>
+        <thead className="bg-orange-300">
           <tr>
             <th className="border border-gray-300 p-2">Image</th>
             <th className="border border-gray-300 p-2">Name</th>

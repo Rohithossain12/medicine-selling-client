@@ -80,9 +80,9 @@ const SalesReport = () => {
         Download PDF
       </button>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-200">
+        <table className="table-auto w-full text-center border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-orange-400 text-white ">
               <th className="border border-gray-300 p-2 text-sm sm:text-base">
                 #
               </th>
@@ -125,7 +125,7 @@ const SalesReport = () => {
                     <td className="border border-gray-300 p-2 text-center">
                       {item.quantity}
                     </td>
-                    <td className="border border-gray-300 p-2 text-right">
+                    <td className="border border-gray-300 p-2 ">
                       ${totalPrice.toFixed(2)}
                     </td>
                   </tr>

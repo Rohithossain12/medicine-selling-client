@@ -178,8 +178,8 @@ const ManageMedicines = () => {
 
       <div className="bg-white rounded-lg p-4 mb-4">
         <table className="min-w-full table-auto border-collapse border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
+          <thead >
+            <tr className="bg-orange-300">
               <th className="border border-gray-300 px-4 py-2">Image</th>
               <th className="border border-gray-300 px-4 py-2">Item Name</th>
 

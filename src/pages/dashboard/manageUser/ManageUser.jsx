@@ -60,7 +60,7 @@ const ManageUser = () => {
         Manage Users
       </h2>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
-        <thead>
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Name</th>
             <th className="border border-gray-300 p-2">Email</th>
