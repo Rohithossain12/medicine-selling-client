@@ -1,50 +1,73 @@
 # PharmaWorld
 
-PharmaWorld is a cutting-edge multi-vendor e-commerce platform dedicated to making healthcare accessible and convenient. We offer a wide range of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. Our user-friendly interface ensures a seamless shopping experience, while secure payment options and reliable delivery services prioritize your health and convenience. Discover better healthcare solutions with PharmaWorld today!
+PharmaWorld is a cutting-edge multi-vendor e-commerce platform designed to make healthcare more accessible and convenient. The platform brings together a wide variety of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. With a user-friendly interface, secure payment options, and reliable delivery services, PharmaWorld ensures a seamless shopping experience for its users.
 
-## Technologies used.
+---
 
-- **React**
-- **firebase**
-- **Tailwind css**
-- **Context Api**
-- **React hot Tost**
-- **Use Navigate**
-- **swiper**
-- **React Helmet**
-- **Jwt**
-- **Stripe**
-- **UseEffect**
-- **react-responsive-carousel**
-- **MongoDb**
-- **react-hook-form**
-- **@stripe/react-stripe-js**
-- **axios**
-- **react-router-dom**
+## 🚀 Live Demo
+[PharmaWorld Live Site](https://endearing-fenglisu-dad95b.netlify.app)  
 
-## Features.
+- **Admin Credentials:**  
+  - Email: pharmaworld@gmail.com  
+  - Password: Pharma@2025  
+- **Seller Credentials:**  
+  - Email: pharma2@gmail.com  
+  - Password: Pharma@2025  
 
-- **User can also register nad login**
-- **User can also update his profile if he wants**
-- **If the user wants,the seller can do it**
-- **Seller can added Products**
-- **You can request admin seller advertisement**
-- **The seller will see payment history on his dashboard**
-- **If the admin wants,the seller, admin can make someone a normal user again**
-- **You can see the products according to the user category**
-- **User can download the invoice after payment**
-- **Admin can download all sales report**
-- **User can see details in payment history after ordering**
-- **User can search by medicine name or company name**
+---
 
-## Live Link.
+## 📚 Table of Contents
+- [Features](#features)  
+- [Technologies Used](#technologies-used)  
+- [Installation](#installation)  
+- [Environment Variables](#environment-variables)  
+- [Usage](#usage)  
+- [Configuration](#configuration)  
+- [License](#license)
 
-### https://endearing-fenglisu-dad95b.netlify.app
+---
 
-## Admin User Name : pharmaworld@gmail.com
+## ✨ Features
+- **User Management:**  
+  - Users can register and log in securely.  
+  - Profile updates are supported for both users and sellers.  
 
-### Password : Pharma@2025
+- **Seller Functionality:**  
+  - Sellers can list and manage products.  
+  - Sellers have access to payment history on their dashboard.  
 
-## Seller User Name : pharma2@gmail.com
+- **Admin Control:**  
+  - Admin can promote users to sellers or demote them to regular users.  
+  - Admin can manage seller advertisements and download sales reports.
 
-### Password : Pharma@2025
+- **E-commerce Features:**  
+  - Search for products by medicine or company name.  
+  - Product filtering by user categories.  
+  - Invoice download after payment.  
+  - View payment history details after orders.
+
+---
+
+## 🛠️ Technologies Used
+- **Frontend:** React, React Router DOM, Context API, Swiper, React Responsive Carousel  
+- **Styling:** Tailwind CSS, DaisyUI  
+- **State Management:** React Query, React Hot Toast  
+- **Payments:** Stripe Integration  
+- **Authentication:** Firebase Authentication  
+- **Backend:** MongoDB, Axios  
+- **Other Tools:** React Helmet, JWT, React Hook Form  
+
+---
+
+## 🧰 Installation
+
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/)  
+- [Vite](https://vitejs.dev/)  
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd medicine-selling-client
