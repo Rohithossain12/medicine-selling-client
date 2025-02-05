@@ -1,6 +1,4 @@
 
----
-
 # **PharmaWorld**  
 ![PharmaWorld Banner](https://i.ibb.co/JwbL3xYW/Capture-PNGytsfdts.png)  
 
