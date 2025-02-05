@@ -1,11 +1,11 @@
-Here’s the updated README with the expanded Admin and Seller features:  
+Here’s the updated **README.md** with the dependencies section included:  
 
 ---
 
 # **PharmaWorld**  
-![PharmaWorld Banner](https://i.ibb.co/JwbL3xYW/Capture-PNGytsfdts.png)
+![PharmaWorld Banner](https://i.ibb.co/JwbL3xYW/Capture-PNGytsfdts.png)  
 
-PharmaWorld is a cutting-edge multi-vendor e-commerce platform dedicated to making healthcare accessible and convenient. We offer a wide range of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. Our user-friendly interface ensures a seamless shopping experience, while secure payment options and reliable delivery services prioritize your health and convenience. Discover better healthcare solutions with PharmaWorld today! 
+PharmaWorld is a cutting-edge multi-vendor e-commerce platform dedicated to making healthcare accessible and convenient. We offer a wide range of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. Our user-friendly interface ensures a seamless shopping experience, while secure payment options and reliable delivery services prioritize your health and convenience. Discover better healthcare solutions with PharmaWorld today!  
 
 ## **Table of Contents**  
 - [Technologies Used](#technologies-used)  
@@ -13,6 +13,7 @@ PharmaWorld is a cutting-edge multi-vendor e-commerce platform dedicated to maki
 - [Installation](#installation)  
 - [Configuration](#configuration)  
 - [Usage](#usage)  
+- [Dependencies](#dependencies)  
 - [Live Demo](#live-demo)  
 - [Contributors](#contributors)  
 - [License](#license)  
@@ -99,6 +100,36 @@ VITE_STRIPE_PUBLIC_KEY=your-stripe-public-key
 2. Sellers can log in to manage products and view payment history.  
 3. Admins can monitor sales and promote/demote users.  
 
+## **Dependencies**  
+
+### **Main Dependencies:**  
+- `react` `^18.x.x`  
+- `react-dom` `^18.x.x`  
+- `firebase` `^11.x.x`  
+- `axios` `^1.x.x`  
+- `react-router-dom` `^7.x.x`  
+- `react-hot-toast` `^2.x.x`  
+- `react-hook-form` `^7.x.x`  
+- `react-icons` `^5.x.x`  
+- `swiper` `^11.x.x`  
+- `sweetalert2` `^11.x.x`  
+- `react-helmet` `^6.x.x`  
+- `react-responsive-carousel` `^3.x.x`  
+- `react-simple-typewriter` `^5.x.x`  
+- `react-spinners` `^0.15.x`  
+- `tailwindcss` `^3.x.x`  
+- `daisyui` `^4.x.x`  
+- `jwt-decode` `^4.x.x`  
+- `jspdf` `^2.x.x`  
+- `jspdf-autotable` `^3.x.x`  
+
+### **Development Dependencies:**  
+- `vite` `^6.x.x`  
+- `eslint` `^9.x.x`  
+- `eslint-plugin-react` `^7.x.x`  
+- `eslint-plugin-react-hooks` `^5.x.x`  
+- `postcss` `^8.x.x`  
+
 ## **Live Demo**  
 Explore the live application here: [PharmaWorld](https://endearing-fenglisu-dad95b.netlify.app)  
 
@@ -118,4 +149,4 @@ This project is licensed under [MIT License](./LICENSE).
 
 ---
 
-Does this version look good to you? 
+Now your `README.md` includes all the **dependencies** used in the project. Let me know if you need any more modifications! 🚀
