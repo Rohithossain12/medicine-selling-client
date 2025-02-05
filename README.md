@@ -60,7 +60,7 @@ PharmaWorld leverages the following technologies and tools:
 - 📜 **Invoice generation for purchases and sales**  
 - 🏷 **Category-based product browsing**  
 - 💳 **Real-time payment updates with Stripe**  
-- 🌙 **Dark and Light mode toggle**  
+ 
 
 ---
 
