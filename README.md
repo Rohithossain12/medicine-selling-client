@@ -2,7 +2,7 @@
 # **PharmaWorld**  
 ![PharmaWorld Banner](https://i.ibb.co/JwbL3xYW/Capture-PNGytsfdts.png)  
 
-**PharmaWorld** is a cutting-edge **multi-vendor e-commerce platform** dedicated to making healthcare **accessible and convenient**. We offer a wide range of medicines, healthcare products, and wellness essentials from **trusted vendors**, all in one place. Our **user-friendly interface** ensures a seamless shopping experience, while **secure payment options** and **reliable delivery services** prioritize your health and convenience.  
+- PharmaWorld is a cutting-edge multi-vendor e-commerce platform dedicated to making healthcare accessible and convenient.
 
 ## **📖 Table of Contents**  
 - [Technologies Used](#technologies-used)  
