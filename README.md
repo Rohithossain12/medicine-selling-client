@@ -1,73 +1,120 @@
-# PharmaWorld
-
-PharmaWorld is a cutting-edge multi-vendor e-commerce platform designed to make healthcare more accessible and convenient. The platform brings together a wide variety of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. With a user-friendly interface, secure payment options, and reliable delivery services, PharmaWorld ensures a seamless shopping experience for its users.
+Here’s the updated README with the expanded Admin and Seller features:  
 
 ---
 
-## 🚀 Live Demo
-[PharmaWorld Live Site](https://endearing-fenglisu-dad95b.netlify.app)  
+# **PharmaWorld**  
 
-- **Admin Credentials:**  
-  - Email: pharmaworld@gmail.com  
-  - Password: Pharma@2025  
-- **Seller Credentials:**  
-  - Email: pharma2@gmail.com  
-  - Password: Pharma@2025  
+A cutting-edge multi-vendor e-commerce platform dedicated to making healthcare accessible and convenient. PharmaWorld offers a wide range of medicines, healthcare products, and wellness essentials from trusted vendors, all in one place. The platform prioritizes user experience through a seamless interface, secure payments, and reliable delivery services.  
 
----
-
-## 📚 Table of Contents
-- [Features](#features)  
+## **Table of Contents**  
 - [Technologies Used](#technologies-used)  
+- [Features](#features)  
 - [Installation](#installation)  
-- [Environment Variables](#environment-variables)  
-- [Usage](#usage)  
 - [Configuration](#configuration)  
-- [License](#license)
+- [Usage](#usage)  
+- [Live Demo](#live-demo)  
+- [Contributors](#contributors)  
+- [License](#license)  
 
----
+## **Technologies Used**  
+PharmaWorld leverages the following technologies and tools:  
+- **Frontend**: React, Tailwind CSS  
+- **Backend & APIs**: Firebase, MongoDB, Axios  
+- **State Management**: Context API  
+- **Authentication & Security**: Firebase, JWT  
+- **Payments Integration**: Stripe  
+- **Other Libraries**:  
+  - React Helmet (dynamic title handling)  
+  - Swiper & react-responsive-carousel (carousel UI components)  
+  - react-hot-toast (notifications)  
+  - react-hook-form (form handling)  
+  - jspdf and jspdf-autotable (PDF generation)  
 
-## ✨ Features
-- **User Management:**  
-  - Users can register and log in securely.  
-  - Profile updates are supported for both users and sellers.  
+## **Features**  
 
-- **Seller Functionality:**  
-  - Sellers can list and manage products.  
-  - Sellers have access to payment history on their dashboard.  
+### **User Features:**  
+- Register and log in to the platform  
+- Update user profiles  
+- Browse and search medicines by name or company  
+- View payment history and download invoices  
 
-- **Admin Control:**  
-  - Admin can promote users to sellers or demote them to regular users.  
-  - Admin can manage seller advertisements and download sales reports.
+### **Seller Features:**  
+- Register as a seller and list healthcare products  
+- Manage product listings (add, edit, delete products)  
+- View payment and sales history  
+- Request product advertisements to increase visibility  
+- Download individual invoices for payments  
 
-- **E-commerce Features:**  
-  - Search for products by medicine or company name.  
-  - Product filtering by user categories.  
-  - Invoice download after payment.  
-  - View payment history details after orders.
+### **Admin Features:**  
+- View all registered users and manage their roles  
+- Promote a user to a seller or demote a seller back to a regular user  
+- Approve seller product advertisements  
+- Download detailed sales reports  
+- Manage and monitor product listings from sellers  
+- Ensure platform compliance by moderating user activities  
 
----
+### **Additional Functionalities:**  
+- Invoice generation  
+- Category-based product viewing  
+- Real-time payment updates  
 
-## 🛠️ Technologies Used
-- **Frontend:** React, React Router DOM, Context API, Swiper, React Responsive Carousel  
-- **Styling:** Tailwind CSS, DaisyUI  
-- **State Management:** React Query, React Hot Toast  
-- **Payments:** Stripe Integration  
-- **Authentication:** Firebase Authentication  
-- **Backend:** MongoDB, Axios  
-- **Other Tools:** React Helmet, JWT, React Hook Form  
+## **Installation**  
 
----
+To set up the project locally:  
 
-## 🧰 Installation
-
-### Prerequisites
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/)  
-- [Vite](https://vitejs.dev/)  
-
-### Steps
-1. Clone the repository:
+1. **Clone the repository:**  
    ```bash
-   git clone <repository_url>
+   git clone <your-repo-link>
    cd medicine-selling-client
+   ```  
+
+2. **Install dependencies:**  
+   ```bash
+   npm install
+   ```  
+
+3. **Run the development server:**  
+   ```bash
+   npm run dev
+   ```  
+
+## **Configuration**  
+
+Set up environment variables by creating a `.env` file in the root directory and adding the following values:  
+```env
+VITE_apiKey=your-api-key
+VITE_authDomain=your-auth-domain
+VITE_projectId=your-project-id
+VITE_storageBucket=your-storage-bucket
+VITE_messagingSenderId=your-messaging-sender-id
+VITE_appId=your-app-id
+VITE_API_URL=http://localhost:9000
+VITE_IMAGE_HOSTING_KEY=your-image-hosting-key
+VITE_STRIPE_PUBLIC_KEY=your-stripe-public-key
+```  
+
+## **Usage**  
+1. Access the user dashboard to browse and purchase products.  
+2. Sellers can log in to manage products and view payment history.  
+3. Admins can monitor sales and promote/demote users.  
+
+## **Live Demo**  
+Explore the live application here: [PharmaWorld](https://endearing-fenglisu-dad95b.netlify.app)  
+
+**Admin Credentials:**  
+- Email: pharmaworld@gmail.com  
+- Password: Pharma@2025  
+
+**Seller Credentials:**  
+- Email: pharma2@gmail.com  
+- Password: Pharma@2025  
+
+## **Contributors**  
+- [Rohithossain12](https://github.com/Rohithossain12)  
+
+## **License**  
+This project is licensed under [MIT License](./LICENSE).  
+
+---
+
+Does this version look good to you? 
