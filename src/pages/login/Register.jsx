@@ -57,17 +57,7 @@ const Register = () => {
         <title>PharmaWorld | Register</title>
       </Helmet>
       <div className="max-w-5xl w-full bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
-        {/* Animation Section */}
-        <div className="md:w-1/2 w-full flex items-center justify-center bg-blue-100 p-6">
-          <Lottie
-            loop
-            animationData={animationData}
-            play
-            className="w-full max-w-sm"
-          />
-        </div>
-
-        {/* Form Section */}
+        {/* Form Section (Right side) */}
         <div className="md:w-1/2 w-full flex flex-col justify-center px-8 py-12">
           <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
             Create an Account
@@ -187,6 +177,16 @@ const Register = () => {
               Please Login
             </Link>
           </p>
+        </div>
+
+        {/* Animation Section (Left side) */}
+        <div className="md:w-1/2 w-full flex items-center justify-center bg-blue-100 p-6">
+          <Lottie
+            loop
+            animationData={animationData}
+            play
+            className="w-full max-w-sm"
+          />
         </div>
       </div>
     </div>
