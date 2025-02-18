@@ -45,7 +45,9 @@ const ContactUs = () => {
                 <h2 className="text-xl font-semibold text-blue-600 ">
                   Location
                 </h2>
-                <p className="text-lg ">Pabna, Dhaka, Bangladesh</p>
+                <p className="text-lg text-gray-800">
+                  Pabna, Dhaka, Bangladesh
+                </p>
               </div>
             </div>
 
@@ -56,7 +58,7 @@ const ContactUs = () => {
                 <h2 className="text-xl text-blue-600 font-semibold">
                   Email Address
                 </h2>
-                <p className="text-lg ">
+                <p className="text-lg text-gray-800 ">
                   You can reach me at my email :{" "}
                   <a href="mailto:rafidislamrohit576@gmail.com" className="">
                     rafidislamrohit576@gmail.com
@@ -72,7 +74,7 @@ const ContactUs = () => {
                 <h2 className="text-xl font-semibold text-blue-600">
                   Phone Number
                 </h2>
-                <p className="text-lg ">
+                <p className="text-lg text-gray-800">
                   Feel free to call me at :{" "}
                   <a href="tel:+8801646151022" className="">
                     +8801646151022
@@ -88,7 +90,7 @@ const ContactUs = () => {
                 <h2 className="text-xl text-blue-600 font-semibold">
                   WhatsApp
                 </h2>
-                <p className="text-lg ">
+                <p className="text-lg text-gray-800 ">
                   You can also message me on WhatsApp:{" "}
                   <a
                     href="https://wa.me/01761667914"
@@ -113,20 +115,20 @@ const ContactUs = () => {
                 type="text"
                 name="user_name"
                 placeholder="Your Name"
-                className="input input-bordered text-black w-full mb-4"
+                className="input input-bordered text-gray-800 w-full mb-4"
                 required
               />
               <input
                 type="email"
                 name="user_email"
                 placeholder="Your Email"
-                className="input input-bordered w-full mb-4 "
+                className="input input-bordered w-full mb-4 text-gray-800 "
                 required
               />
               <textarea
                 name="message"
                 placeholder="Your Message"
-                className="textarea textarea-bordered w-full mb-4"
+                className="textarea textarea-bordered w-full mb-4 text-gray-800"
                 required
               />
               <button

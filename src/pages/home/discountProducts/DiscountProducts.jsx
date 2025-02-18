@@ -48,7 +48,7 @@ const DiscountProducts = () => {
         >
           {products?.map((product) => (
             <SwiperSlide key={product?._id}>
-              <div className="product-slide p-3  bg-blue-50">
+              <div className="product-slide p-3  bg-blue-50 rounded-lg">
                 <img
                   src={product?.image}
                   alt={product.name}

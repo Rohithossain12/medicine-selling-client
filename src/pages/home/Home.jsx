@@ -6,6 +6,7 @@ import HealthTips from "./banner/HealthTips";
 import CustomerTestimonials from "./CustomerTestimonials";
 import { Helmet } from "react-helmet";
 import ContactUs from "../../components/contact/ContactUs";
+import Faq from "../../components/faq/Faq";
 
 const Home = () => {
   return (
@@ -38,6 +39,10 @@ const Home = () => {
       {/* Contact Us */}
       <div>
         <ContactUs></ContactUs>
+      </div>
+      {/* Frequently Asked Questions */}
+      <div>
+        <Faq></Faq>
       </div>
     </div>
   );

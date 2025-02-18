@@ -13,7 +13,7 @@ const CustomerTestimonials = () => {
 
   return (
     <div className="mt-10 mb-10 bg-blue-50 p-8 rounded-lg ">
-      <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
+      <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-center text-blue-600 mb-8">
         What Our Customers Say
       </h2>
       <Carousel
