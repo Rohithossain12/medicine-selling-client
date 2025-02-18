@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaSun, FaMoon } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, handleToggleTheme } = useAuth();
   const [isAdmin] = useAdmin();
   const [isSeller] = useSeller();
   const [currentTime, setCurrentTime] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const email = user?.email;
 
@@ -48,6 +49,20 @@ const Navbar = () => {
       return res?.data;
     },
   });
+
+  const handleThemeToggle = () => {
+    handleToggleTheme();
+    setIsDarkMode(!isDarkMode);
+  };
+
+  // Apply dark mode to body
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   return (
     <nav className="bg-gray-800 text-white px-4 py-3 sticky top-0 z-50 shadow-md">
@@ -94,6 +109,13 @@ const Navbar = () => {
               {carts.length}
             </p>
           </Link>
+          {/* Dark Mode Toggle Icon Only */}
+          <button
+            onClick={handleThemeToggle}
+            className="text-xl hover:text-gray-400"
+          >
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
 
           {user?.email ? (
             <>
@@ -117,6 +139,7 @@ const Navbar = () => {
               >
                 Dashboard
               </Link>
+
               <button
                 onClick={handleLogout}
                 className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
@@ -177,6 +200,13 @@ const Navbar = () => {
           >
             Cart ({carts.length})
           </Link>
+          {/* Mobile theme toggle */}
+          <button
+            onClick={handleThemeToggle}
+            className="text-xl text-gray-300 hover:text-gray-400"
+          >
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
           {user?.email ? (
             <>
               <Link

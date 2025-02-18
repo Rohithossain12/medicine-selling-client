@@ -21,6 +21,15 @@ const AuthProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const axiosPublic = useAxiosPublic();
 
+  const [theme, setTheme] = useState("light");
+
+  const handleToggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  useEffect(() => {
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }, [theme]);
 
   // Create new User
   const createUser = (email, password) => {
@@ -29,7 +38,7 @@ const AuthProvider = ({ children }) => {
   };
   // login user
   const login = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -86,7 +95,6 @@ const AuthProvider = ({ children }) => {
     return () => unSubscribe();
   }, [axiosPublic]);
 
- 
   const authInfo = {
     user,
     loading,
@@ -99,6 +107,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     userProfileUpdate,
     changePassword,
+    handleToggleTheme ,
   };
 
   return (

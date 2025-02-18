@@ -32,8 +32,8 @@ const DiscountProducts = () => {
           centeredSlides={true}
           slidesPerView={"auto"}
           autoplay={{
-            delay: 2500, 
-            disableOnInteraction: false, 
+            delay: 2500,
+            disableOnInteraction: false,
           }}
           coverflowEffect={{
             rotate: 50,
