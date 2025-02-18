@@ -33,7 +33,7 @@ const FeaturedBrands = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-12 px-6">
+    <div className="bg-gray-100 py-12 px-6 rounded-lg">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#6A1B9A]">
           Featured Brands & Trusted Pharmacies

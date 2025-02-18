@@ -30,7 +30,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="bg-blue-50 py-10 rounded-lg mb-10">
+    <div className="bg-gray-100 py-10 rounded-lg mb-10">
       <h1 className="text-xl lg:text-3xl md:text-2xl text-blue-600 font-bold mb-8 text-center">
         Contact Information
       </h1>

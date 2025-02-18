@@ -108,7 +108,9 @@ const Shop = () => {
 
   return (
     <div className="mt-10 mb-10">
-      <h1 className="text-2xl font-bold mb-6 text-blue-600">All Medicines</h1>
+      <h1 className=" text-center lg:text-3xl md:text-2xl text-xl font-bold mb-6 text-blue-600">
+        All Medicines
+      </h1>
 
       {/* Search Bar */}
       <div className="mb-4 flex gap-4">

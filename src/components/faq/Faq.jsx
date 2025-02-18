@@ -4,7 +4,7 @@ const Faq = () => {
       <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-6">
         Frequently Asked Questions (FAQs)
       </h1>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" defaultChecked />
         <div className="collapse-title text-xl font-medium text-gray-800">
           1. What is PharmaWorld, and how does it work?
@@ -18,7 +18,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           2. How do I know if the medicines sold here are genuine?
@@ -31,7 +31,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           3. Can I upload my prescription to order medicines?
@@ -44,7 +44,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           4. How do I track my order?
@@ -57,7 +57,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           5. What are the available payment methods?
@@ -71,7 +71,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 mb-1">
+      <div className="collapse collapse-arrow bg-gray-100 mb-1">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           6. What is the return and refund policy?
@@ -88,7 +88,7 @@ const Faq = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-blue-50 ">
+      <div className="collapse collapse-arrow bg-gray-100 ">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium text-gray-800">
           7. How can I become a seller on PharmaWorld?

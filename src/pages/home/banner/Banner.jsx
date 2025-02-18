@@ -19,8 +19,6 @@ const Banner = () => {
     },
   });
 
-
-
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   // Filter advertisements to include only those with status: true
@@ -43,15 +41,15 @@ const Banner = () => {
             <img
               src={advertisement?.image}
               alt={advertisement?.medicine}
-              className="w-full h-[500px] object-cover" 
+              className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover rounded"
             />
             {/* Text Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center px-5 md:px-0 lg:px-0 ">
               <div className="bg-black bg-opacity-30 text-white p-6 rounded-md max-w-3xl text-center">
-                <h3 className="text-2xl font-bold uppercase mb-4">
+                <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-4">
                   {advertisement.medicine}
                 </h3>
-                <p className="text-lg">{advertisement.description}</p>
+                <p className="">{advertisement.description}</p>
               </div>
             </div>
           </div>
@@ -62,4 +60,3 @@ const Banner = () => {
 };
 
 export default Banner;
-
