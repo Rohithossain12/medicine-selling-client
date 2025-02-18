@@ -7,6 +7,7 @@ import CustomerTestimonials from "./CustomerTestimonials";
 import { Helmet } from "react-helmet";
 import ContactUs from "../../components/contact/ContactUs";
 import Faq from "../../components/faq/Faq";
+import FeaturedBrands from "../../components/FeaturedBrands/FeaturedBrands";
 
 const Home = () => {
   return (
@@ -30,6 +31,9 @@ const Home = () => {
       {/* Health Tips & Advice */}
       <div>
         <HealthTips></HealthTips>
+      </div>
+      <div>
+        <FeaturedBrands></FeaturedBrands>
       </div>
 
       {/* Customer Testimonials */}

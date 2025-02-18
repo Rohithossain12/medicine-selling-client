@@ -115,20 +115,20 @@ const ContactUs = () => {
                 type="text"
                 name="user_name"
                 placeholder="Your Name"
-                className="input input-bordered text-gray-800 w-full mb-4"
+                className="input input-bordered  w-full mb-4"
                 required
               />
               <input
                 type="email"
                 name="user_email"
                 placeholder="Your Email"
-                className="input input-bordered w-full mb-4 text-gray-800 "
+                className="input input-bordered w-full mb-4  "
                 required
               />
               <textarea
                 name="message"
                 placeholder="Your Message"
-                className="textarea textarea-bordered w-full mb-4 text-gray-800"
+                className="textarea textarea-bordered w-full mb-4 "
                 required
               />
               <button
