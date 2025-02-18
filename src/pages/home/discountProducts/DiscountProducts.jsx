@@ -1,8 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import "./styles.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -11,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 const DiscountProducts = () => {
   const axiosPublic = useAxiosPublic();
 
-  // Get add to cart data
+  // Fetch discount products
   const { data: products = [] } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
@@ -32,6 +31,10 @@ const DiscountProducts = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
+          autoplay={{
+            delay: 2500, 
+            disableOnInteraction: false, 
+          }}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,
@@ -40,12 +43,11 @@ const DiscountProducts = () => {
             slideShadows: true,
           }}
           pagination={true}
-          modules={[EffectCoverflow, Pagination]}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
           className="mySwiper"
         >
           {products?.map((product) => (
             <SwiperSlide key={product?._id}>
-              {/* Content for each product slide */}
               <div className="product-slide">
                 <img
                   src={product?.image}
