@@ -14,7 +14,7 @@ const CategoryCard = ({ category }) => {
   return (
     <div>
       <Link to={`/categoryDetails/${category.categoryName}`} key={category._id}>
-        <div className=" bg-base-200 rounded-lg p-5 overflow-hidden">
+        <div className=" bg-blue-50 rounded-lg p-5 overflow-hidden">
           <figure>
             <img
               src={category.categoryImage}

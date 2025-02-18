@@ -12,7 +12,7 @@ const CustomerTestimonials = () => {
   }, []);
 
   return (
-    <div className="mt-16 mb-16 bg-blue-50 p-8 rounded-lg shadow-lg">
+    <div className="mt-10 mb-10 bg-blue-50 p-8 rounded-lg ">
       <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
         What Our Customers Say
       </h2>

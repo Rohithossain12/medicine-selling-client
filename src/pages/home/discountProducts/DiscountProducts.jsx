@@ -48,13 +48,13 @@ const DiscountProducts = () => {
         >
           {products?.map((product) => (
             <SwiperSlide key={product?._id}>
-              <div className="product-slide">
+              <div className="product-slide p-3  bg-blue-50">
                 <img
                   src={product?.image}
                   alt={product.name}
                   className="w-full h-60 object-cover rounded-md"
                 />
-                <h3 className="text-center mt-2 text-lg font-semibold">
+                <h3 className="text-center mt-2 text-lg font-semibold text-blue-600">
                   {product?.itemName}
                 </h3>
                 <p className="text-center text-sm text-green-500">

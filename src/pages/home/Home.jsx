@@ -5,6 +5,7 @@ import Banner from "./banner/Banner";
 import HealthTips from "./banner/HealthTips";
 import CustomerTestimonials from "./CustomerTestimonials";
 import { Helmet } from "react-helmet";
+import ContactUs from "../../components/contact/ContactUs";
 
 const Home = () => {
   return (
@@ -33,6 +34,10 @@ const Home = () => {
       {/* Customer Testimonials */}
       <div>
         <CustomerTestimonials></CustomerTestimonials>
+      </div>
+      {/* Contact Us */}
+      <div>
+        <ContactUs></ContactUs>
       </div>
     </div>
   );
