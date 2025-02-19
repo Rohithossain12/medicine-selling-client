@@ -11,10 +11,10 @@ const UpdateProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
-  const [contact, setContact] = useState(user?.contact || "");
-  const [address, setAddress] = useState(user?.address || "");
+  const [contact, setContact] = useState("");
+  const [address, setAddress] = useState("");
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState({});
   const axiosSecure = useAxiosSecure();
 
   const email = user?.email;
@@ -22,23 +22,15 @@ const UpdateProfile = () => {
   useEffect(() => {
     axiosSecure
       .get(`/users/${email}`)
-      .then((res) => {
-        setUserData(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
+      .then((res) => setUserData(res.data))
+      .catch(console.error);
   }, [email, axiosSecure]);
 
-  // Function to handle profile update
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // Step 1: Update Firebase profile
       await userProfileUpdate(name, photoURL);
-
-      // Step 2: Update database for the specific user
       const payload = {
         email: user?.email,
         name,
@@ -46,17 +38,13 @@ const UpdateProfile = () => {
         contact,
         address,
       };
-
       const response = await axiosSecure.put(
         `/user/updateProfile/${user?.email}`,
         payload
       );
-      console.log(response);
-      if (response.data.message) {
-        toast.success("Profile updated successfully!");
-      } else {
-        toast.error("Failed to update profile.");
-      }
+      response.data.message
+        ? toast.success("Profile updated successfully!")
+        : toast.error("Failed to update profile.");
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Failed to update profile.");
@@ -67,69 +55,53 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className=" p-6 bg-gray-100 mt-10 mb-10 text-gray-800">
+    <div className="max-w-3xl mx-auto mt-10 mb-10 p-6 bg-gray-100 shadow-lg rounded-xl ">
       <Helmet>
         <title>PharmaWorld | Update Profile</title>
       </Helmet>
-      <div className="text-center mb-6">
-        <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold">
-          Welcome, {userData?.name || user?.displayName}
-        </h2>
-      </div>
-
-      {/* Banner Image */}
-      <div className="h-32 bg-green-200 flex justify-center items-center rounded-lg mb-6">
+      <div className="relative flex flex-col items-center">
         <img
-          className="h-20 w-20 rounded-full border-4 border-white -mt-10"
-          src={user?.photoURL || "/default-avatar.png"}
+          className="h-24 w-24 rounded-full border-4 border-green-500"
+          src={user?.photoURL}
           alt="Profile"
         />
-      </div>
-
-      
-      {/* Profile Info */}
-      <div className="text-center px-6 py-4">
-        <h2 className="text-xl font-semibold text-gray-800">
-          {userData?.role}
+        <h2 className="mt-4 text-2xl font-semibold text-gray-800">
+          {user?.displayName}
         </h2>
-        <p className="text-gray-500 mt-2 text-sm">User Id: {user?.uid}</p>
-
-        <div className="mt-4">
-          <p className="text-lg font-medium text-gray-900">Name</p>
-          <p className="text-gray-600">{user?.displayName}</p>
+        <p className="text-gray-600">{user?.email}</p>
+      </div>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+        <div>
+          <p className="text-gray-500 font-bold">Role</p>
+          <h3 className="text-lg font-medium">{userData?.role}</h3>
         </div>
-
-        <div className="mt-4">
-          <p className="text-lg font-medium text-gray-900">Contact</p>
-          <p className="text-gray-600">{userData?.contact}</p>
+        <div>
+          <p className="text-gray-500 font-bold">User ID</p>
+          <p>{user?.uid}</p>
         </div>
-        <div className="mt-4">
-          <p className="text-lg font-medium text-gray-900">Address</p>
-          <p className="text-gray-600">{userData?.address}</p>
+        <div>
+          <p className="text-gray-500 font-bold">Contact</p>
+          <p>{userData?.contact || "N/A"}</p>
         </div>
-        <div className="mt-4">
-          <p className="text-lg font-medium text-gray-900">Email</p>
-          <p className="text-gray-600">{user?.email}</p>
+        <div>
+          <p className="text-gray-500 font-bold">Address</p>
+          <p>{userData?.address || "N/A"}</p>
         </div>
       </div>
-
-      {/* Action Buttons */}
-      <div className="px-6 py-4 flex justify-between">
+      <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg"
           onClick={() => setIsModalOpen(true)}
         >
           Update Profile
         </button>
         <button
           onClick={() => changePassword(auth, user?.email)}
-          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg"
         >
           Change Password
         </button>
       </div>
-
-      {/* Update Profile Modal */}
       {isModalOpen && (
         <Dialog
           as="div"
@@ -137,85 +109,49 @@ const UpdateProfile = () => {
           open={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         >
-          <div className="bg-white w-full max-w-lg rounded-lg shadow-lg p-6">
+          <div className="bg-white w-full max-w-lg p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Update Profile
             </h3>
-            <form onSubmit={handleUpdateProfile}>
-              {/* Name Field */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  defaultValue={user?.displayName}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
-                />
-              </div>
-
-              {/* Photo URL Field */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">
-                  Photo URL
-                </label>
-                <input
-                  type="text"
-                  defaultValue={user?.photoURL}
-                  onChange={(e) => setPhotoURL(e.target.value)}
-                  placeholder="Enter your photo URL"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
-                />
-              </div>
-
-              {/* Contact Field */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">
-                  Contact
-                </label>
-                <input
-                  type="text"
-                  defaultValue={userData?.contact || ""}
-                  onChange={(e) => setContact(e.target.value)}
-                  placeholder="Enter your contact number"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
-                />
-              </div>
-
-              {/* Address Field */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  defaultValue={userData?.address || ""}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Enter your address"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
-                />
-              </div>
-
-              {/* Email (Read-only) */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={user?.email}
-                  readOnly
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-800"
-                />
-              </div>
-
-              {/* Submit Button */}
+            <form onSubmit={handleUpdateProfile} className="space-y-4">
+              <input
+                type="text"
+                defaultValue={userData?.name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                className="w-full px-4 py-2 border rounded-lg"
+              />
+              <input
+                type="text"
+                defaultValue={userData?.photo}
+                onChange={(e) => setPhotoURL(e.target.value)}
+                placeholder="Photo URL"
+                className="w-full px-4 py-2 border rounded-lg"
+              />
+              <input
+                type="text"
+                defaultValue={userData?.contact}
+                onChange={(e) => setContact(e.target.value)}
+                placeholder="Contact"
+                className="w-full px-4 py-2 border rounded-lg"
+              />
+              <input
+                type="text"
+                defaultValue={userData?.address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Address"
+                className="w-full px-4 py-2 border rounded-lg"
+              />
+              <input
+                type="email"
+                value={user?.email}
+                readOnly
+                className="w-full px-4 py-2 border rounded-lg bg-gray-100"
+              />
               <div className="flex justify-end">
                 <button
                   type="button"
-                  className="mr-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mr-2"
                   onClick={() => setIsModalOpen(false)}
                 >
                   Cancel
