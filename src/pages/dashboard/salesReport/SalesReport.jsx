@@ -66,7 +66,7 @@ const SalesReport = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-6 bg-gray-100 min-h-screen rounded-lg">
       <Helmet>
         <title>PharmaWorld | Sales Report</title>
       </Helmet>
@@ -82,7 +82,7 @@ const SalesReport = () => {
       <div className="overflow-x-auto">
         <table className="table-auto w-full text-center border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-orange-400 text-white ">
+            <tr className="bg-green-500 text-white ">
               <th className="border border-gray-300 p-2 text-sm sm:text-base">
                 #
               </th>
@@ -109,7 +109,7 @@ const SalesReport = () => {
                 const totalPrice = item.totalPrice || 0;
 
                 return (
-                  <tr key={order._id + itemIndex} className="hover:bg-gray-50">
+                  <tr key={order._id + itemIndex} className="hover:bg-gray-50 text-gray-800 ">
                     <td className="border border-gray-300 p-2 text-center">
                       {index + 1}
                     </td>

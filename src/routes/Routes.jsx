@@ -123,6 +123,12 @@ export const router = createBrowserRouter([
             <SalesReport></SalesReport>
           </AdminRoute>
         ),
+
+      
+      },
+      {
+        path:"updateProfile",
+        element:<UpdateProfile></UpdateProfile>
       },
 
       // seller only routes
@@ -170,6 +176,10 @@ export const router = createBrowserRouter([
         path: "userHome",
         element: <UserHome></UserHome>,
       },
+      {
+        path:"updateProfile",
+        element:<UpdateProfile></UpdateProfile>
+      }
     ],
   },
 ]);

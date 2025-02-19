@@ -131,7 +131,7 @@ const ManageCategory = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div>
+    <div className="p-6 bg-gray-100 rounded-lg min-h-screen ">
       <Helmet>
         <title>PharmaWorld | Manage Categories</title>
       </Helmet>
@@ -148,7 +148,7 @@ const ManageCategory = () => {
       </button>
 
       <table className="w-full border-collapse text-center border border-gray-300">
-        <thead className="bg-orange-300">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Image</th>
             <th className="border border-gray-300 p-2">Name</th>
@@ -158,8 +158,8 @@ const ManageCategory = () => {
         </thead>
         <tbody>
           {categories?.map((category) => (
-            <tr key={category._id}>
-              <td className="border border-gray-300 p-2">
+            <tr key={category._id} className="text-gray-800">
+              <td className="border border-gray-300 p-2 ">
                 <img
                   src={category?.categoryImage}
                   alt={category?.categoryName}

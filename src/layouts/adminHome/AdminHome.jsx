@@ -4,8 +4,10 @@ import { FaMoneyBillWave } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 
 const AdminHome = () => {
+  const { user } = useAuth();
   // Fetch orders data using React Query
   const {
     data: salesData = [],
@@ -40,11 +42,16 @@ const AdminHome = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <div className="mb-8">
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-green-500 font-bold mb-4">
+    <div className="p-6 bg-gray-100 min-h-screen rounded-lg">
+      <div className="text-center mb-6">
+        <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold">
+          Welcome, {user?.displayName}!
+        </h2>
+      </div>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
         Admin Dashboard
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Total Sales Revenue */}
         <div className="bg-blue-500 text-white p-4 rounded-md flex items-center">
           <FaMoneyBillWave className="text-4xl mr-4" />

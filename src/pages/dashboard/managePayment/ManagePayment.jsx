@@ -44,13 +44,13 @@ const ManagePayment = () => {
 
   if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
-    <div>
+    <div className="p-6 min-h-screen bg-gray-100 rounded-lg">
       <Helmet>
         <title>PharmaWorld | Payment Management</title>
       </Helmet>
       <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Payment Management</h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
-        <thead className="bg-orange-400">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Status</th>
             <th className="border border-gray-300 p-2">Amount</th>
@@ -68,10 +68,10 @@ const ManagePayment = () => {
               >
                 {order.status === false ? "Pending" : "Paid"}
               </td>
-              <td className="border border-gray-300 p-2">
+              <td className="border border-gray-300 p-2 text-gray-800">
                ${order.totalAmount}
               </td>
-              <td className="border border-gray-300 p-2"> {order.buyer}</td>
+              <td className="border border-gray-300 p-2 text-gray-800"> {order.buyer}</td>
               <td className="border border-gray-300 p-2">
                 {order.status === false ? (
                   <button

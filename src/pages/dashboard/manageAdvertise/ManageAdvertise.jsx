@@ -8,7 +8,11 @@ import { Helmet } from "react-helmet";
 const ManageAdvertise = () => {
   const axiosSecure = useAxiosSecure();
   const [isToggling, setIsToggling] = useState(false);
-  const { data: advertisements = [], refetch,isLoading } = useQuery({
+  const {
+    data: advertisements = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["advertisements"],
     queryFn: async () => {
       const res = await axiosSecure.get("/advertisements");
@@ -18,7 +22,7 @@ const ManageAdvertise = () => {
 
   // Toggle status of advertisement
   const toggleStatus = async (id, currentStatus) => {
-    setIsToggling(true); 
+    setIsToggling(true);
     try {
       await axiosSecure.patch(`/advertisements/${id}`, {
         status: !currentStatus,
@@ -28,22 +32,24 @@ const ManageAdvertise = () => {
           ? "Advertisement removed successfully!"
           : "Advertisement added to slider!"
       );
-      refetch(); 
+      refetch();
     } catch (error) {
       toast.error("Failed to update status. Please try again.");
       console.error("Failed to update status:", error);
     } finally {
-      setIsToggling(false); 
+      setIsToggling(false);
     }
   };
 
-  if(isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div>
+    <div className="min-h-screen p-6 bg-gray-100 rounded-lg">
       <Helmet>
         <title>PharmaWorld | Manage Advertisements</title>
       </Helmet>
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Manage Advertisements</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+        Manage Advertisements
+      </h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
         <thead className="bg-green-500 text-white">
           <tr>
@@ -56,8 +62,8 @@ const ManageAdvertise = () => {
         </thead>
         <tbody>
           {advertisements?.map((ad) => (
-            <tr key={ad._id}>
-              <td className="border border-gray-300 p-2">
+            <tr key={ad._id} className="text-gray-800">
+              <td className="border border-gray-300 p-2 ">
                 <img
                   src={ad.image}
                   alt={ad.medicine}
@@ -88,6 +94,3 @@ const ManageAdvertise = () => {
 };
 
 export default ManageAdvertise;
-
-
-

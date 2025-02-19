@@ -51,8 +51,9 @@ const ManageUser = () => {
   };
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-6 bg-gray-100 dark:bg-gray-800 min-h-screen rounded-lg">
       <Helmet>
         <title>PharmaWorld | Manage User</title>
       </Helmet>
@@ -70,7 +71,7 @@ const ManageUser = () => {
         </thead>
         <tbody>
           {users?.map((user) => (
-            <tr key={user?._id}>
+            <tr key={user?._id} className="text-gray-800 dark:text-white">
               <td className="border border-gray-300 p-2">{user?.name}</td>
               <td className="border border-gray-300 p-2">{user?.email}</td>
               <td className="border border-gray-300 p-2">{user?.role}</td>
@@ -78,7 +79,7 @@ const ManageUser = () => {
                 <select
                   value={user?.role}
                   onChange={(e) => handleRoleChange(user?._id, e.target.value)}
-                  className="border border-gray-300 p-1 rounded"
+                  className="border border-gray-300 dark:border-gray-600 p-1 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
                 >
                   <option value="user">user</option>
                   <option value="seller">seller</option>
