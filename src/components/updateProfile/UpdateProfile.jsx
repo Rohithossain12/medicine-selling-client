@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
@@ -11,8 +11,24 @@ const UpdateProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [contact, setContact] = useState(user?.contact || "");
+  const [address, setAddress] = useState(user?.address || "");
   const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState("");
   const axiosSecure = useAxiosSecure();
+
+  const email = user?.email;
+
+  useEffect(() => {
+    axiosSecure
+      .get(`/users/${email}`)
+      .then((res) => {
+        setUserData(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [email, axiosSecure]);
 
   // Function to handle profile update
   const handleUpdateProfile = async (e) => {
@@ -27,6 +43,8 @@ const UpdateProfile = () => {
         email: user?.email,
         name,
         photo: photoURL,
+        contact,
+        address,
       };
 
       const response = await axiosSecure.put(
@@ -49,22 +67,31 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
+    <div className=" p-6 bg-gray-100 mt-10 mb-10 text-gray-800">
       <Helmet>
         <title>PharmaWorld | Update Profile</title>
       </Helmet>
+      <div className="text-center mb-6">
+        <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold">
+          Welcome, {userData?.name || user?.displayName}
+        </h2>
+      </div>
+
       {/* Banner Image */}
-      <div className="h-32 bg-green-200 flex justify-center items-center">
+      <div className="h-32 bg-green-200 flex justify-center items-center rounded-lg mb-6">
         <img
-          className="h-20 w-20 rounded-full border-4 border-white -mt-4"
-          src={user?.photoURL}
+          className="h-20 w-20 rounded-full border-4 border-white -mt-10"
+          src={user?.photoURL || "/default-avatar.png"}
           alt="Profile"
         />
       </div>
 
+      
       {/* Profile Info */}
       <div className="text-center px-6 py-4">
-        <h2 className="text-xl font-semibold text-gray-800">CUSTOMER</h2>
+        <h2 className="text-xl font-semibold text-gray-800">
+          {userData?.role}
+        </h2>
         <p className="text-gray-500 mt-2 text-sm">User Id: {user?.uid}</p>
 
         <div className="mt-4">
@@ -72,6 +99,14 @@ const UpdateProfile = () => {
           <p className="text-gray-600">{user?.displayName}</p>
         </div>
 
+        <div className="mt-4">
+          <p className="text-lg font-medium text-gray-900">Contact</p>
+          <p className="text-gray-600">{userData?.contact}</p>
+        </div>
+        <div className="mt-4">
+          <p className="text-lg font-medium text-gray-900">Address</p>
+          <p className="text-gray-600">{userData?.address}</p>
+        </div>
         <div className="mt-4">
           <p className="text-lg font-medium text-gray-900">Email</p>
           <p className="text-gray-600">{user?.email}</p>
@@ -117,7 +152,7 @@ const UpdateProfile = () => {
                   defaultValue={user?.displayName}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500"
+                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
                 />
               </div>
 
@@ -131,7 +166,35 @@ const UpdateProfile = () => {
                   defaultValue={user?.photoURL}
                   onChange={(e) => setPhotoURL(e.target.value)}
                   placeholder="Enter your photo URL"
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500"
+                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
+                />
+              </div>
+
+              {/* Contact Field */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-600">
+                  Contact
+                </label>
+                <input
+                  type="text"
+                  defaultValue={userData?.contact || ""}
+                  onChange={(e) => setContact(e.target.value)}
+                  placeholder="Enter your contact number"
+                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
+                />
+              </div>
+
+              {/* Address Field */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-600">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  defaultValue={userData?.address || ""}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Enter your address"
+                  className="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500 bg-white text-gray-800"
                 />
               </div>
 
@@ -144,7 +207,7 @@ const UpdateProfile = () => {
                   type="email"
                   value={user?.email}
                   readOnly
-                  className="w-full border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-500"
+                  className="w-full border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-800"
                 />
               </div>
 

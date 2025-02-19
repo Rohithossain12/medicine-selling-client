@@ -77,11 +77,11 @@ const CartPage = () => {
       <Helmet>
         <title>PharmaWorld | Cart</title>
       </Helmet>
-      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6">
+      <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-6 text-center">
         My Cart
       </h1>
       {carts.length === 0 ? (
-        <p className="text-center text-xl md:text-2xl lg:text-3xl ">
+        <p className="text-center text-xl md:text-2xl lg:text-2xl ">
           MY cart is empty..!
         </p>
       ) : (
