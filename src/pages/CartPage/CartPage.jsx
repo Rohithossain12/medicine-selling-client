@@ -73,7 +73,7 @@ const CartPage = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <div className="p-8">
+    <div className="p-6 mt-10 bg-gray-100 rounded-lg mb-10 min-h-screen ">
       <Helmet>
         <title>PharmaWorld | Cart</title>
       </Helmet>
@@ -89,7 +89,7 @@ const CartPage = () => {
           <div className="overflow-x-auto text-center">
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
-                <tr>
+                <tr className="bg-green-500 text-white">
                   <th className="border border-gray-300 px-4 py-2">
                     Medicine Name
                   </th>
@@ -106,7 +106,7 @@ const CartPage = () => {
               </thead>
               <tbody>
                 {carts.map((item) => (
-                  <tr key={item._id}>
+                  <tr key={item._id} className="text-gray-800">
                     <td className="border border-gray-300 px-4 py-2">
                       {item.name}
                     </td>

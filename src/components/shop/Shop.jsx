@@ -107,7 +107,7 @@ const Shop = () => {
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
-    <div className="mt-10 mb-10">
+    <div className="mt-10 mb-10 bg-gray-100 p-6 rounded-lg">
       <h1 className=" text-center lg:text-3xl md:text-2xl text-xl font-bold mb-6 text-blue-600">
         All Medicines
       </h1>
@@ -117,7 +117,7 @@ const Shop = () => {
         <input
           type="text"
           placeholder="Search by name or company..."
-          className="border p-2 rounded w-full"
+          className="border p-2 rounded w-full text-gray-800 bg-white dark:bg-white"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -136,7 +136,7 @@ const Shop = () => {
         </Helmet>
         <table className="table-auto min-w-full border border-gray-300">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-green-500 text-white">
               <th className="p-2 border border-gray-300">#</th>
               <th className="p-2 border border-gray-300">Image</th>
               <th className="p-2 border border-gray-300">Name</th>
@@ -154,7 +154,7 @@ const Shop = () => {
           </thead>
           <tbody>
             {paginatedMedicines.map((medicine, index) => (
-              <tr key={medicine?._id} className="text-center">
+              <tr key={medicine?._id} className="text-center text-gray-800">
                 <td className="p-2 border border-gray-300">
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>

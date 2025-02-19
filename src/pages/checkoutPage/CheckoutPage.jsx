@@ -14,11 +14,11 @@ const CheckoutPage = () => {
   const grandTotal = state?.grandTotal || 0;
   const medicineItems = state?.medicineItems || [];
   return (
-    <div className="p-8">
+    <div className="p-8 bg-gray-100 mt-10 mb-10 rounded-lg text-gray-800 ">
       <Helmet>
         <title>PharmaWorld | Checkout</title>
       </Helmet>
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+      <h1 className="text-2xl font-bold mb-6 text-blue-600">Checkout</h1>
       <p className="text-xl">Total Amount: ${grandTotal.toFixed(2)}</p>
       <Elements stripe={stripePromise}>
         <CheckoutForm
