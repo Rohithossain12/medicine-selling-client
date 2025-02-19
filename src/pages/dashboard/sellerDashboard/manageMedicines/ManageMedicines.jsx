@@ -157,7 +157,7 @@ const ManageMedicines = () => {
 
   if (medicinesLoading || isCategoryLoading) return <LoadingSpinner />;
   return (
-    <div className=" p-6 bg-gray-100 min-h-screen rounded-lg">
+    <div className=" p-6 bg-gray-100 min-h-screen rounded-lg text-gray-800">
       <Helmet>
         <title>PharmaWorld | Manage Medicines</title>
       </Helmet>
@@ -178,7 +178,7 @@ const ManageMedicines = () => {
 
       <div className="bg-white rounded-lg p-4 mb-4">
         <table className="min-w-full table-auto border-collapse border border-gray-300">
-          <thead >
+          <thead>
             <tr className="bg-green-500 text-white">
               <th className="border border-gray-300 px-4 py-2">Image</th>
               <th className="border border-gray-300 px-4 py-2">Item Name</th>
@@ -192,7 +192,10 @@ const ManageMedicines = () => {
           </thead>
           <tbody>
             {medicines.map((medicine) => (
-              <tr key={medicine._id} className="hover:bg-gray-100 text-gray-800">
+              <tr
+                key={medicine._id}
+                className="hover:bg-gray-100 text-gray-800"
+              >
                 <td className="border border-gray-300 px-4 py-2">
                   <img
                     src={medicine.image}
@@ -256,8 +259,9 @@ const ManageMedicines = () => {
                   {...register("itemName", {
                     required: "Item Name is required",
                   })}
+                  placeholder="Enter item name"
                   defaultValue={isEditing ? currentMedicine.itemName : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                 />
 
                 {errors.itemName && (
@@ -280,7 +284,7 @@ const ManageMedicines = () => {
                     required: "Category is required",
                   })}
                   defaultValue={isEditing ? currentMedicine?.category : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                 >
                   <option>Select Category</option>
                   {categories?.map((category) => (
@@ -307,7 +311,7 @@ const ManageMedicines = () => {
                   id="company"
                   {...register("company", { required: "Company is required" })}
                   defaultValue={isEditing ? currentMedicine.company : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                 >
                   <option value="">Select Company</option>
                   {categories?.map((category) => (
@@ -363,7 +367,7 @@ const ManageMedicines = () => {
                     required: "Mass Unit is required",
                   })}
                   defaultValue={isEditing ? currentMedicine.itemMassUnit : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                 >
                   <option value="">Select Unit</option>
                   <option value="mg">Mg</option>
@@ -389,8 +393,9 @@ const ManageMedicines = () => {
                     required: "Price is required",
                     min: { value: 1, message: "Price must be greater than 0" },
                   })}
+                  placeholder="Enter price"
                   defaultValue={isEditing ? currentMedicine.perUnitPrice : ""}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                 />
                 {errors.perUnitPrice && (
                   <p className="text-red-500 text-xs">
@@ -411,7 +416,7 @@ const ManageMedicines = () => {
                   {...register("discount", {
                     min: { value: 0, message: "Discount can't be negative" },
                   })}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                   defaultValue={isEditing ? currentMedicine.discount : "0"}
                 />
                 {errors.discount && (
@@ -433,7 +438,7 @@ const ManageMedicines = () => {
                   {...register("quantity", {
                     min: { value: 0, message: "Quantity can't be negative" },
                   })}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                   defaultValue={isEditing ? currentMedicine.quantity : "1"}
                 />
                 {errors.quantity && (
@@ -455,7 +460,8 @@ const ManageMedicines = () => {
                   {...register("description", {
                     required: "Description is required ",
                   })}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  placeholder="Enter description"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent bg-white dark:bg-white"
                   defaultValue={isEditing ? currentMedicine.description : ""}
                 />
                 {errors.description && (
@@ -468,7 +474,7 @@ const ManageMedicines = () => {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                  className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 "
                 >
                   Cancel
                 </button>

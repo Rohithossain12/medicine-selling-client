@@ -21,19 +21,19 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await login(data.email, data.password);
-      console.log(result)
+      console.log(result);
       const user = result.user;
 
       // Show a success toast with the user's display name
       toast.success(`Welcome, ${user.displayName || user.email}!`);
       navigate("/");
     } catch (error) {
-      
       toast.error(error.message || "Failed to log in. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 to-blue-50 px-4 py-10">
       <Helmet>
@@ -72,7 +72,7 @@ const Login = () => {
                   pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 })}
                 placeholder="Enter your email"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full text-gray-800 rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">
@@ -98,7 +98,7 @@ const Login = () => {
                     /^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]*$/,
                 })}
                 placeholder="Enter your password"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">

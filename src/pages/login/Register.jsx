@@ -37,6 +37,8 @@ const Register = () => {
         photo: data.photoURL,
         role: "user",
         email: data.email,
+        contact: data.contact, // New contact field
+        address: data.address, // New address field
       };
 
       // Send user data to the backend
@@ -76,7 +78,7 @@ const Register = () => {
                 type="text"
                 {...register("name", { required: true })}
                 placeholder="Enter your name"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1">Name is required.</p>
@@ -92,7 +94,7 @@ const Register = () => {
                 type="text"
                 {...register("photoURL", { required: true })}
                 placeholder="Enter photo URL"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.photoURL && (
                 <p className="text-red-500 text-sm mt-1">
@@ -113,7 +115,7 @@ const Register = () => {
                   pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 })}
                 placeholder="Enter your email"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">
@@ -139,7 +141,7 @@ const Register = () => {
                     /^[A-Z](?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]*$/,
                 })}
                 placeholder="Enter a strong password"
-                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
               />
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">
@@ -151,6 +153,37 @@ const Register = () => {
                     ? "Password must be less than 20 characters."
                     : "Password must include uppercase, lowercase, number, and special character."}
                 </p>
+              )}
+            </div>
+
+            {/* Contact Field */}
+            <div className="form-control">
+              <label className="label text-sm font-medium text-gray-600">
+                Contact Number
+              </label>
+              <input
+                type="text"
+                {...register("contact", { required: true })}
+                placeholder="Enter your contact number"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
+              />
+              {errors.contact && (
+                <p className="text-red-500 text-sm mt-1">Contact is required.</p>
+              )}
+            </div>
+
+            {/* Address Field */}
+            <div className="form-control">
+              <label className="label text-sm font-medium text-gray-600">
+                Address
+              </label>
+              <textarea
+                {...register("address", { required: true })}
+                placeholder="Enter your address"
+                className="input input-bordered w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:ring-2 hover:ring-blue-400 transition bg-white dark:bg-white"
+              />
+              {errors.address && (
+                <p className="text-red-500 text-sm mt-1">Address is required.</p>
               )}
             </div>
 

@@ -54,15 +54,15 @@ const ManageCategory = () => {
         );
         if (res.status === 200) {
           toast.success("Category updated successfully!");
-          refetch(); 
+          refetch();
         }
       } else {
         await axiosSecure.post("/category", categoryData);
         toast.success("Category added successfully!");
-        refetch(); 
+        refetch();
       }
 
-      reset(); 
+      reset();
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
@@ -131,11 +131,13 @@ const ManageCategory = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg min-h-screen ">
+    <div className="p-6 bg-gray-100 rounded-lg min-h-screen text-gray-800 ">
       <Helmet>
         <title>PharmaWorld | Manage Categories</title>
       </Helmet>
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">Manage Categories</h2>
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
+        Manage Categories
+      </h2>
       <button
         onClick={() => {
           setShowModal(true);
@@ -211,7 +213,7 @@ const ManageCategory = () => {
                   })}
                   defaultValue={isEditing ? currentCategory?.categoryName : ""}
                   placeholder="Enter category name"
-                  className={`w-full border rounded-md p-2 ${
+                  className={`w-full border rounded-md p-2 bg-white ${
                     errors.categoryName ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -232,7 +234,7 @@ const ManageCategory = () => {
                   })}
                   defaultValue={isEditing ? currentCategory?.companyName : ""}
                   placeholder="Enter company name"
-                  className={`w-full border rounded-md p-2 ${
+                  className={`w-full border rounded-md p-2 bg-white ${
                     errors.companyName ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -255,7 +257,7 @@ const ManageCategory = () => {
                   })}
                   defaultValue={isEditing ? currentCategory?.categoryImage : ""}
                   placeholder="Enter image URL"
-                  className={`w-full border rounded-md p-2 ${
+                  className={`w-full border rounded-md p-2 bg-white ${
                     errors.image ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -293,6 +295,3 @@ const ManageCategory = () => {
 };
 
 export default ManageCategory;
-
-
-

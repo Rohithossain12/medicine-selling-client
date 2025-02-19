@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 const SocialLogin = () => {
   const axiosPublic = useAxiosPublic();
@@ -32,6 +33,9 @@ const SocialLogin = () => {
       setLoading(false);
     }
   };
+
+
+ 
   return (
     <div className="mt-5">
       <button

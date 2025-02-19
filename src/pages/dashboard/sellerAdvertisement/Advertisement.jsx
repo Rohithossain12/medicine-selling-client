@@ -57,7 +57,7 @@ const Advertisement = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div className="p-6 bg-gray-100 min-h-screen rounded-lg">
+    <div className="p-6 bg-gray-100 min-h-screen rounded-lg text-gray-800">
       <Helmet>
         <title>PharmaWorld | Ask For Advertisement </title>
       </Helmet>
@@ -118,7 +118,7 @@ const Advertisement = () => {
                     required: "Medicine name is required",
                   })}
                   placeholder="Enter Medicine Name"
-                  className={`w-full border rounded-md p-2 ${
+                  className={`w-full border rounded-md p-2 bg-white dark:bg-white ${
                     errors.medicine ? "border-red-500" : "border-gray-300"
                   }`}
                 />
@@ -135,7 +135,7 @@ const Advertisement = () => {
                     required: "description is required",
                   })}
                   placeholder="Enter Description"
-                  className={`w-full border px-2 py-1 rounded ${
+                  className={`w-full border px-2 py-1 rounded bg-white dark:bg-white ${
                     errors.description ? "border-red-500" : "border-gray-300"
                   }`}
                 ></textarea>
@@ -150,7 +150,7 @@ const Advertisement = () => {
                 <input
                   {...register("image", { required: "Image Is Required" })}
                   placeholder="Enter Image URL"
-                  className={`w-full border rounded-md p-2 ${
+                  className={`w-full border rounded-md p-2 bg-white dark:bg-white ${
                     errors.image ? "border-red-500" : "border-gray-300"
                   }`}
                 />
