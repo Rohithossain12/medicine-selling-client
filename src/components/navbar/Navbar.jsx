@@ -55,7 +55,6 @@ const Navbar = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Apply dark mode to body
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
@@ -109,11 +108,7 @@ const Navbar = () => {
               {carts.length}
             </p>
           </Link>
-          {/* Dark Mode Toggle Icon Only */}
-          <button
-            onClick={handleThemeToggle}
-            className="text-xl hover:text-gray-400"
-          >
+          <button onClick={handleThemeToggle} className="text-xl hover:text-gray-400">
             {isDarkMode ? <FaSun /> : <FaMoon />}
           </button>
 
@@ -122,9 +117,7 @@ const Navbar = () => {
               <Link
                 to="/updateProfile"
                 className={`hover:text-gray-400 ${
-                  location.pathname === "/updateProfile"
-                    ? "text-yellow-400"
-                    : ""
+                  location.pathname === "/updateProfile" ? "text-yellow-400" : ""
                 }`}
               >
                 Profile
@@ -132,14 +125,18 @@ const Navbar = () => {
               <Link
                 to={dashboardRoute}
                 className={`hover:text-gray-400 ${
-                  location.pathname.includes("/dashboard")
-                    ? "text-yellow-400"
-                    : ""
+                  location.pathname.includes("/dashboard") ? "text-yellow-400" : ""
                 }`}
               >
                 Dashboard
               </Link>
-
+              {user.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  className="h-10 w-10 rounded-full border border-gray-400"
+                />
+              )}
               <button
                 onClick={handleLogout}
                 className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
@@ -157,95 +154,10 @@ const Navbar = () => {
           )}
         </div>
 
-        <button
-          className="md:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
+        <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           &#9776;
         </button>
       </div>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-700 p-4 rounded mt-3 space-y-3 flex flex-col">
-          <div className="text-center text-gray-300 text-lg font-semibold">
-            {currentTime}
-          </div>
-          <Link
-            to="/"
-            className={`${
-              location.pathname === "/"
-                ? "text-yellow-400"
-                : "hover:text-gray-400"
-            }`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/shop"
-            className={`${
-              location.pathname === "/shop"
-                ? "text-yellow-400"
-                : "hover:text-gray-400"
-            }`}
-          >
-            Shop
-          </Link>
-          <Link
-            to="/cartPage"
-            className={`${
-              location.pathname === "/cartPage"
-                ? "text-yellow-400"
-                : "hover:text-gray-400"
-            } block`}
-          >
-            Cart ({carts.length})
-          </Link>
-          {/* Mobile theme toggle */}
-          <button
-            onClick={handleThemeToggle}
-            className="text-xl text-gray-300 hover:text-gray-400"
-          >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          {user?.email ? (
-            <>
-              <Link
-                to="/updateProfile"
-                className={`block hover:text-gray-400 ${
-                  location.pathname === "/updateProfile"
-                    ? "text-yellow-400"
-                    : ""
-                }`}
-              >
-                Profile
-              </Link>
-              <Link
-                to={dashboardRoute}
-                className={`block hover:text-gray-400 ${
-                  location.pathname.includes("/dashboard")
-                    ? "text-yellow-400"
-                    : ""
-                }`}
-              >
-                Dashboard
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="block text-left w-full hover:text-gray-400"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <Link
-              to="/login"
-              className="block bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
-            >
-              Join Us
-            </Link>
-          )}
-        </div>
-      )}
     </nav>
   );
 };

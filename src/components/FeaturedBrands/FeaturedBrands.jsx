@@ -44,7 +44,7 @@ const FeaturedBrands = () => {
       </div>
 
       {/* Brand List */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 max-w-6xl mx-auto">
         {brands.map((brand) => (
           <div
             key={brand.id}
