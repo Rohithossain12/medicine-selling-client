@@ -33,7 +33,7 @@ const PaymentHistory = () => {
 
   if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
-    <div className="container mx-auto p-4">
+    <div className=" p-6 bg-gray-100 min-h-screen">
       <Helmet>
         <title>PharmaWorld | Payment History</title>
       </Helmet>
@@ -41,7 +41,7 @@ const PaymentHistory = () => {
         Payment History
       </h1>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
-        <thead className="bg-orange-300">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Medicine</th>
             <th className="border border-gray-300 p-2">Buyer</th>
@@ -51,7 +51,7 @@ const PaymentHistory = () => {
         </thead>
         <tbody>
           {paymentHistory.map((payment) => (
-            <tr key={payment.id}>
+            <tr key={payment.id} className="text-gray-800">
               <td className="border border-gray-300 p-2">{payment.medicine}</td>
               <td className="border border-gray-300 p-2">{payment.buyer}</td>
               <td className="border border-gray-300 p-2">

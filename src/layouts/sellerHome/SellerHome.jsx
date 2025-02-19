@@ -42,20 +42,26 @@ const SellerHome = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-6 bg-gray-100 min-h-screen">
       <Helmet>
         <title>PharmaWorld | Seller Home</title>
       </Helmet>
+      <div className="text-center mb-6">
+        <h2 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold">
+          Welcome, {user?.displayName}!
+        </h2>
+      </div>
+
       <h1 className="text-xl md:text-2xl lg:text-3xl text-blue-600 font-bold mb-4">
         Seller Dashboard
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
         <div className="p-4 bg-green-100 border border-green-500 rounded">
-          <h2 className="text-xl font-semibold">Paid Total</h2>
+          <h2 className="text-xl font-semibold text-gray-800">Paid Total</h2>
           <p className="text-2xl font-bold text-green-600">${paidTotal}</p>
         </div>
         <div className="p-4 bg-yellow-100 border border-yellow-500 rounded">
-          <h2 className="text-xl font-semibold">Pending Total</h2>
+          <h2 className="text-xl font-semibold text-gray-800">Pending Total</h2>
           <p className="text-2xl font-bold text-yellow-600">${pendingTotal}</p>
         </div>
       </div>
@@ -63,7 +69,7 @@ const SellerHome = () => {
         Sales Details
       </h2>
       <table className="table-auto w-full border-collapse border border-gray-300 text-center">
-        <thead className="bg-orange-300">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Medicine</th>
             <th className="border border-gray-300 p-2">Price</th>
@@ -73,8 +79,8 @@ const SellerHome = () => {
         <tbody>
           {paymentHistory.map((sale, index) => (
             <tr key={index}>
-              <td className="border border-gray-300 p-2">{sale.medicine}</td>
-              <td className="border border-gray-300 p-2">${sale.totalPrice}</td>
+              <td className="border border-gray-300 p-2 text-gray-800">{sale.medicine}</td>
+              <td className="border border-gray-300 p-2 text-gray-800">${sale.totalPrice}</td>
               <td
                 className={`border border-gray-300 p-2 ${
                   sale.paymentStatus === "Paid"

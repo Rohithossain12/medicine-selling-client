@@ -57,7 +57,7 @@ const Advertisement = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div>
+    <div className="p-6 bg-gray-100 min-h-screen rounded-lg">
       <Helmet>
         <title>PharmaWorld | Ask For Advertisement </title>
       </Helmet>
@@ -65,7 +65,7 @@ const Advertisement = () => {
         Ask For Advertisement
       </h2>
       <table className="w-full border-collapse border border-gray-300 text-center">
-        <thead className="bg-orange-300">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="border border-gray-300 p-2">Image</th>
             <th className="border border-gray-300 p-2">Medicine</th>
@@ -75,7 +75,7 @@ const Advertisement = () => {
         </thead>
         <tbody>
           {advertisements?.map((ad) => (
-            <tr key={ad._id}>
+            <tr key={ad._id} className="text-gray-800">
               <td className="border border-gray-300 p-2">
                 <img
                   src={ad.image}

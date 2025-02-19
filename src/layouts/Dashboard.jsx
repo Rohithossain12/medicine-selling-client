@@ -126,34 +126,42 @@ const Dashboard = () => {
               <NavLink
                 to="/dashboard/sellerHome"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 ${isActive ? "text-yellow-400" : ""}`
+                  `flex items-center gap-2 py-2 font-bold ${isActive ? "text-yellow-400" : ""}`
                 }
               >
-                <FaHome /> Seller Home
+                <FaHome size={15} /> Seller Home
               </NavLink>
               <NavLink
                 to="/dashboard/manageMedicines"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 ${isActive ? "text-yellow-400" : ""}`
+                  `flex items-center gap-2 py-2 font-bold ${isActive ? "text-yellow-400" : ""}`
                 }
               >
-                <FaHome /> Manage Medicines
+                <FaHome size={15} /> Manage Medicines
               </NavLink>
               <NavLink
                 to="/dashboard/paymentHistory"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 ${isActive ? "text-yellow-400" : ""}`
+                  `flex items-center gap-2 py-2 font-bold ${isActive ? "text-yellow-400" : ""}`
                 }
               >
-                <FaHistory /> Payment History
+                <FaHistory size={15} /> Payment History
               </NavLink>
               <NavLink
                 to="/dashboard/askForAdvertisement"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 ${isActive ? "text-yellow-400" : ""}`
+                  `flex items-center gap-2 py-2 font-bold ${isActive ? "text-yellow-400" : ""}`
                 }
               >
-                <RiAdvertisementFill /> Ask For Advertisement
+                <RiAdvertisementFill size={15} /> Ask For Advertisement
+              </NavLink>
+              <NavLink
+                to="/dashboard/updateProfile"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-2 font-bold ${isActive ? "text-yellow-400" : ""}`
+                }
+              >
+                <CgProfile size={15} /> Profile
               </NavLink>
             </>
           )}
@@ -168,17 +176,17 @@ const Dashboard = () => {
                   }`
                 }
               >
-                <FaHome /> User Home
+                <FaHome size={15} /> User Home
               </NavLink>
               <NavLink
                 to="/dashboard/updateProfile"
                 className={({ isActive }) =>
-                  `flex items-center gap-2 py-2  ${
+                  `flex items-center gap-2 py-2 font-bold  ${
                     isActive ? "text-yellow-400" : ""
                   }`
                 }
               >
-                <CgProfile /> Profile
+                <CgProfile size={15} /> Profile
               </NavLink>
             </>
           )}

@@ -157,7 +157,7 @@ const ManageMedicines = () => {
 
   if (medicinesLoading || isCategoryLoading) return <LoadingSpinner />;
   return (
-    <div className="container mx-auto p-6">
+    <div className=" p-6 bg-gray-100 min-h-screen rounded-lg">
       <Helmet>
         <title>PharmaWorld | Manage Medicines</title>
       </Helmet>
@@ -179,7 +179,7 @@ const ManageMedicines = () => {
       <div className="bg-white rounded-lg p-4 mb-4">
         <table className="min-w-full table-auto border-collapse border border-gray-300">
           <thead >
-            <tr className="bg-orange-300">
+            <tr className="bg-green-500 text-white">
               <th className="border border-gray-300 px-4 py-2">Image</th>
               <th className="border border-gray-300 px-4 py-2">Item Name</th>
 
@@ -192,7 +192,7 @@ const ManageMedicines = () => {
           </thead>
           <tbody>
             {medicines.map((medicine) => (
-              <tr key={medicine._id} className="hover:bg-gray-100">
+              <tr key={medicine._id} className="hover:bg-gray-100 text-gray-800">
                 <td className="border border-gray-300 px-4 py-2">
                   <img
                     src={medicine.image}
