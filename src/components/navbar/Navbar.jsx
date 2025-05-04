@@ -29,13 +29,14 @@ const Navbar = () => {
     ? "/dashboard/sellerHome"
     : "/dashboard/userHome";
 
-  const { data: carts = [] } = useQuery({
+  const { data: carts = [],refetch } = useQuery({
     queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/cart/${email}`);
       return res?.data;
     },
   });
+  
 
   return (
     <nav className="bg-gray-900 text-white px-4 py-3 shadow-md">
