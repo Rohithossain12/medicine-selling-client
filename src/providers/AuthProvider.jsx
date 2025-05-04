@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const axiosPublic = useAxiosPublic();
-  console.log(user)
+
 
   const [theme, setTheme] = useState("light");
 

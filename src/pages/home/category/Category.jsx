@@ -17,7 +17,7 @@ const Category = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   return (
-    <div className="mt-10 mb-10 ">
+    <div className=" mb-10 ">
       <h1 className="text-center mb-5 pt-5  text-xl lg:text-3xl md:text-2xl font-bold text-blue-600">
         All Category : {categories.length}{" "}
       </h1>

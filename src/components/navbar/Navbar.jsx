@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { FaShoppingCart, FaSun, FaMoon } from "react-icons/fa";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import toast from "react-hot-toast";
+import { FaShoppingCart } from "react-icons/fa";
 import useAdmin from "../../hooks/useAdmin";
 import useSeller from "../../hooks/useSeller";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
-  const { user, logOut, handleToggleTheme } = useAuth();
+  const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
   const [isSeller] = useSeller();
-  const [currentTime, setCurrentTime] = useState("");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const axiosSecure = useAxiosSecure();
   const location = useLocation();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const email = user?.email;
 
   const handleLogout = async () => {
@@ -28,13 +22,6 @@ const Navbar = () => {
       toast.error("Failed to log out. Please try again.");
     }
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const dashboardRoute = isAdmin
     ? "/dashboard/adminHome"
@@ -50,89 +37,77 @@ const Navbar = () => {
     },
   });
 
-  const handleThemeToggle = () => {
-    handleToggleTheme();
-    setIsDarkMode(!isDarkMode);
-  };
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
   return (
-    <nav className="bg-gray-800 text-white px-4 py-3 sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/">
-          <div className="flex items-center">
-            <img
-              src="https://i.ibb.co.com/307FPxy/Fd0-Dp-VFXo-AM3-TXX-removebg-preview.png"
-              alt="Logo"
-              className="h-10 w-10 mr-2"
-            />
-            <span className="text-xl font-bold">PharmaWorld</span>
-          </div>
+    <nav className="bg-gray-900 text-white px-4 py-3 shadow-md">
+      <div className="container mx-auto flex items-center justify-between">
+        {/* Logo and Brand Name */}
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src="https://i.ibb.co/307FPxy/Fd0-Dp-VFXo-AM3-TXX-removebg-preview.png"
+            alt="Logo"
+            className="h-10 w-10"
+          />
+          <span className="text-xl font-bold">PharmaWorld</span>
         </Link>
 
-        <div className="hidden md:flex items-center text-gray-300 text-lg font-semibold">
-          {currentTime}
-        </div>
-
-        <div className="hidden md:flex items-center space-x-6">
+        {/* Desktop Links */}
+        <div className="hidden md:flex gap-6 items-center">
           <Link
             to="/"
-            className={`${
+            className={`px-3 py-2 rounded-md ${
               location.pathname === "/"
-                ? "text-yellow-400"
-                : "hover:text-gray-400"
+                ? "text-yellow-400 bg-gray-800"
+                : "hover:bg-gray-700"
             }`}
           >
             Home
           </Link>
           <Link
             to="/shop"
-            className={`${
+            className={`px-3 py-2 rounded-md ${
               location.pathname === "/shop"
-                ? "text-yellow-400"
-                : "hover:text-gray-400"
+                ? "text-yellow-400 bg-gray-800"
+                : "hover:bg-gray-700"
             }`}
           >
             Shop
           </Link>
-          <Link to="/cartPage" className="relative cursor-pointer">
-            <FaShoppingCart className="text-xl hover:text-gray-400" />
-            <p className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+          <Link
+            to="/cartPage"
+            className="flex items-center gap-2 px-3 py-2 hover:bg-gray-700 rounded-md"
+          >
+            <FaShoppingCart className="text-xl" />
+            <span>Cart</span>
+            <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               {carts.length}
-            </p>
+            </span>
           </Link>
-          <button onClick={handleThemeToggle} className="text-xl hover:text-gray-400">
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </button>
-
           {user?.email ? (
             <>
               <Link
                 to="/updateProfile"
-                className={`hover:text-gray-400 ${
-                  location.pathname === "/updateProfile" ? "text-yellow-400" : ""
+                className={`px-3 py-2 rounded-md ${
+                  location.pathname === "/updateProfile"
+                    ? "text-yellow-400 bg-gray-800"
+                    : "hover:bg-gray-700"
                 }`}
               >
                 Profile
               </Link>
               <Link
                 to={dashboardRoute}
-                className={`hover:text-gray-400 ${
-                  location.pathname.includes("/dashboard") ? "text-yellow-400" : ""
+                className={`px-3 py-2 rounded-md ${
+                  location.pathname.includes("/dashboard")
+                    ? "text-yellow-400 bg-gray-800"
+                    : "hover:bg-gray-700"
                 }`}
               >
                 Dashboard
               </Link>
-              {user.photoURL && (
+
+                 {user?.photoURL && (
                 <img
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   alt="Profile"
                   className="h-10 w-10 rounded-full border border-gray-400"
                 />
@@ -147,17 +122,124 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
             >
               Join Us
             </Link>
           )}
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          &#9776;
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {mobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
         </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden mt-4 px-4 py-2 space-y-3 bg-gray-900 rounded-xl shadow-lg">
+          <Link
+            to="/"
+            className={`flex items-center gap-2 px-3 py-2 rounded-md ${
+              location.pathname === "/"
+                ? "text-yellow-400 bg-gray-800"
+                : "hover:bg-gray-700"
+            }`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            🏠 Home
+          </Link>
+          <Link
+            to="/shop"
+            className={`flex items-center gap-2 px-3 py-2 rounded-md ${
+              location.pathname === "/shop"
+                ? "text-yellow-400 bg-gray-800"
+                : "hover:bg-gray-700"
+            }`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            🛒 Shop
+          </Link>
+          <Link
+            to="/cartPage"
+            className="flex items-center gap-2 px-3 py-2 hover:bg-gray-700 rounded-md"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <FaShoppingCart className="text-xl" />
+            <span>Cart</span>
+            <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              {carts.length}
+            </span>
+          </Link>
+          {user?.email ? (
+            <>
+              <Link
+                to="/updateProfile"
+                className={`flex items-center gap-2 px-3 py-2 rounded-md ${
+                  location.pathname === "/updateProfile"
+                    ? "text-yellow-400 bg-gray-800"
+                    : "hover:bg-gray-700"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                👤 Profile
+              </Link>
+              <Link
+                to={dashboardRoute}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md ${
+                  location.pathname.includes("/dashboard")
+                    ? "text-yellow-400 bg-gray-800"
+                    : "hover:bg-gray-700"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                📊 Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setMobileMenuOpen(false);
+                }}
+                className="bg-blue-500 hover:bg-blue-600 w-full text-center px-4 py-2 rounded text-white font-medium"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-blue-500 hover:bg-blue-600 w-full text-center px-4 py-2 rounded text-white font-medium block"
+            >
+              Join Us
+            </Link>
+          )}
+        </div>
+      )}
     </nav>
   );
 };
