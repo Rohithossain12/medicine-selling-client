@@ -62,7 +62,7 @@ const Register = () => {
         {/* Form Section (Right side) */}
         <div className="md:w-1/2 w-full flex flex-col justify-center px-8 py-12">
         <Link to="/" className="text-center underline mb-2">Back to Home</Link>
-          <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
+          <h2 className= "text-xl md:text-2xl lg:text-3xl font-bold text-center text-blue-700 mb-6">
             Create an Account
           </h2>
           <form
