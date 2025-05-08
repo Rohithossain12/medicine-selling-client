@@ -159,13 +159,6 @@ VITE_STRIPE_PUBLIC_KEY=your-stripe-public-key
 
 🔗 **Explore the live application here:** [PharmaWorld](https://endearing-fenglisu-dad95b.netlify.app)  
 
-**🛠 Admin Credentials:**  
-- ✉ **Email:** pharmaworld@gmail.com  
-- 🔑 **Password:** Pharma@2025  
-
-**🛒 Seller Credentials:**  
-- ✉ **Email:** pharma2@gmail.com  
-- 🔑 **Password:** Pharma@2025  
 
 ---
 
